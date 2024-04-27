@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import Link from 'next/link'
-import fileUploadPreview from '../../public/file-upload-preview.jpg'
+import dashboardPreview from '../../public/dashboard-preview.jpg'
 
 const HomePage = () => {
   return (
@@ -50,12 +50,13 @@ const MainSection = () => {
   return (
     <div className="m-2 rounded-xl bg-purple-300/20 p-3 ring-1 ring-inset ring-gray-900/10">
       <Image
-        src={fileUploadPreview}
-        alt="File preiview upload true"
+        className="rounded-lg shadow-2xl ring-1 ring-gray-900/10"
+        src={dashboardPreview}
+        alt="Dashboard preiview showcase"
         width={1364}
         height={866}
         quality={100}
-        className="rounded-lg shadow-2xl ring-1 ring-gray-900/10"
+        priority
       />
     </div>
   )
