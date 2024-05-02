@@ -1,4 +1,4 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper'
+import Container from '@/components/Container'
 import { Button } from '@/components/ui/button'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
@@ -7,7 +7,7 @@ import dashboardPreview from '../../public/dashboard-preview.jpg'
 
 const HomePage = () => {
   return (
-    <MaxWidthWrapper className="grid grid-rows-3 space-y-1">
+    <Container className="grid grid-rows-3 space-y-1">
       <div className="flex flex-col items-center justify-center space-y-5 text-center">
         <HeaderSection />
       </div>
@@ -17,7 +17,7 @@ const HomePage = () => {
       <div className="flex items-center justify-center">
         <FooterSection />
       </div>
-    </MaxWidthWrapper>
+    </Container>
   )
 }
 
@@ -27,7 +27,7 @@ const HeaderSection = () => {
       <p className="my-5 rounded-full bg-gradient-to-r from-blue-600 to-purple-300 px-7 py-2 font-semibold text-white shadow-md transition-all md:text-lg lg:text-lg">
         Klipp is now public!
       </p>
-      <h1 className="max-w-4xl text-5xl font-bold text-slate-600/90 md:text-6xl lg:text-7xl">
+      <h1 className="max-w-4xl text-5xl font-bold text-slate-700/90 md:text-6xl lg:text-7xl">
         Chat with your <span className="text-blue-600">documents</span> in
         seconds.
       </h1>

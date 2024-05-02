@@ -56,4 +56,7 @@
   body {
     @apply bg-background text-foreground;
   }
+  .text-primary {
+    color: #145cf2;
+  }
 }

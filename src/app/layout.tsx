@@ -1,7 +1,8 @@
+import Navbar from '@/components/Navbar'
+import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { cn } from '@/lib/utils'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,7 +25,8 @@ export default function RootLayout({
         )}
       >
         <div className="bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]">
-          {children}
+          <Navbar />
+          <main>{children}</main>
         </div>
       </body>
     </html>
