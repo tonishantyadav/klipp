@@ -4,7 +4,6 @@ import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { usePathname } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,8 +26,10 @@ export default function RootLayout({
             inter.className
           )}
         >
-          <Navbar />
-          <main>{children}</main>
+          <div className="bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]">
+            <Navbar />
+            <main>{children}</main>
+          </div>
         </body>
       </html>
     </ClerkProvider>

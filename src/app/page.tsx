@@ -9,7 +9,7 @@ import hightVoltage from '../../public/high-voltage.svg'
 
 const HomePage = () => {
   return (
-    <div className="bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]">
+    <>
       <Container className="grid grid-rows-3 space-y-1">
         <div className="flex flex-col items-center justify-center space-y-5 text-center">
           <HeaderSection />
@@ -22,7 +22,7 @@ const HomePage = () => {
         </div>
       </Container>
       <ScrollToTopButton />
-    </div>
+    </>
   )
 }
 

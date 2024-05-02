@@ -1,9 +1,15 @@
 import Container from '@/components/Container'
+import { UserButton } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
+import { ArrowRightIcon, DashboardIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import Link from 'next/link'
 import stackIcon from '../../public/stack-icon.svg'
+import { Button } from '@/components/ui/button'
 
 const Navbar = async () => {
+  const { userId } = auth()
+
   return (
     <nav>
       <Container className="flex items-center justify-between">
@@ -16,13 +22,23 @@ const Navbar = async () => {
             <span className="text-2xl font-bold text-primary">Klipp</span>
           </Link>
         </div>
-        <div className="m-2 flex space-x-4 p-2 text-lg  text-zinc-500/80">
-          <Link className="hover:text-zinc-600/80" href="/dashboard">
-            Dashboard
+        <div className="m-2 flex items-center space-x-2 p-2">
+          <Link href="/dashboard">
+            <Button className="flex gap-2 bg-purple-600 hover:bg-purple-500">
+              <DashboardIcon />
+              <span>Dashboard</span>
+            </Button>
           </Link>
-          <Link className="hover:text-zinc-600/80" href="/sign-in">
-            Signin
-          </Link>
+          {userId ? (
+            <UserButton />
+          ) : (
+            <Link href="/sign-in">
+              <Button className="flex gap-2">
+                <span>Signin</span>
+                <ArrowRightIcon />
+              </Button>
+            </Link>
+          )}
         </div>
       </Container>
     </nav>
