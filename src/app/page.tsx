@@ -4,20 +4,24 @@ import { ArrowRightIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import Link from 'next/link'
 import dashboardPreview from '../../public/dashboard-preview.jpg'
+import ScrollToTopButton from '@/components/ScrollToTopButton'
 
 const HomePage = () => {
   return (
-    <Container className="grid grid-rows-3 space-y-1">
-      <div className="flex flex-col items-center justify-center space-y-5 text-center">
-        <HeaderSection />
-      </div>
-      <div className="flex flex-col items-center justify-center">
-        <MainSection />
-      </div>
-      <div className="flex items-center justify-center">
-        <FooterSection />
-      </div>
-    </Container>
+    <>
+      <Container className="grid grid-rows-3 space-y-1">
+        <div className="flex flex-col items-center justify-center space-y-5 text-center">
+          <HeaderSection />
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <MainSection />
+        </div>
+        <div className="flex items-center justify-center">
+          <FooterSection />
+        </div>
+      </Container>
+      <ScrollToTopButton />
+    </>
   )
 }
 
