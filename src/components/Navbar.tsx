@@ -6,6 +6,7 @@ import { ArrowRightIcon, DashboardIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import Link from 'next/link'
 import stackIcon from '../../public/stack-icon.svg'
+import AvatarIcon from '@radix-ui/react-icons'
 
 const Navbar = async () => {
   const { userId } = auth()
@@ -24,14 +25,14 @@ const Navbar = async () => {
         </div>
         <div className="m-2 flex items-center space-x-2 p-2">
           <Link href="/dashboard">
-            <Button className="flex gap-2 bg-purple-600 hover:bg-purple-500">
+            <Button className="flex items-center space-x-1 bg-purple-600 font-medium text-neutral-200 transition hover:scale-110 hover:bg-purple-500">
               <DashboardIcon />
               <span>Dashboard</span>
             </Button>
           </Link>
           {!userId ? (
             <SignInButton mode="modal">
-              <Button className="flex gap-2">
+              <Button className="flex items-center space-x-1 font-medium text-neutral-200 transition hover:scale-110">
                 <span>Signin</span>
                 <ArrowRightIcon />
               </Button>
