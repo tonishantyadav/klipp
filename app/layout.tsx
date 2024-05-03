@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar'
+import { Navbar } from '@/components/Navbar'
 import { cn } from '@/lib/utils'
 import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'

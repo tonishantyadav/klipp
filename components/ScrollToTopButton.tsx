@@ -49,4 +49,4 @@ const ScrollToTopButton = () => {
   )
 }
 
-export default ScrollToTopButton
+export { ScrollToTopButton }

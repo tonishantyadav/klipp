@@ -1,11 +1,11 @@
-import Container from '@/components/Container'
+import { Container } from '@/components/Container'
 import { Button } from '@/components/ui/button'
+import stackIcon from '@/public/stack-icon.svg'
 import { SignInButton, UserButton } from '@clerk/nextjs'
 import { auth } from '@clerk/nextjs/server'
 import { ArrowRightIcon, DashboardIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import Link from 'next/link'
-import stackIcon from '../../public/stack-icon.svg'
 
 const Navbar = async () => {
   const { userId } = auth()
@@ -51,4 +51,4 @@ const Navbar = async () => {
   )
 }
 
-export default Navbar
+export { Navbar }

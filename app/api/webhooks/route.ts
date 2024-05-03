@@ -53,8 +53,9 @@ export async function POST(req: Request) {
   const { id } = evt.data
   const eventType = evt.type
 
-  if (evt.type === 'user.created' || evt.type === 'user.updated') {
-    console.log('userdData:', evt.data)
+  if (evt.type === 'user.created') {
+    const clerkUserId = evt.data.id
+    const email = evt.data.email_addresses[0].email_address
   }
 
   return new Response('', { status: 200 })

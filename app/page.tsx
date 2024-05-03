@@ -1,11 +1,11 @@
-import Container from '@/components/Container'
-import ScrollToTopButton from '@/components/ScrollToTopButton'
+import { Container } from '@/components/Container'
+import { ScrollToTopButton } from '@/components/ScrollToTopButton'
 import { Button } from '@/components/ui/button'
+import dashboardPreview from '@/public/dashboard-preview.jpg'
+import hightVoltage from '@/public/high-voltage.svg'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import Link from 'next/link'
-import dashboardPreview from '../../public/dashboard-preview.jpg'
-import hightVoltage from '../../public/high-voltage.svg'
 
 const HomePage = () => {
   return (
