@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import stackIcon from '@/public/stack-icon.svg'
 import { SignInButton, UserButton } from '@clerk/nextjs'
 import { auth } from '@clerk/nextjs/server'
-import { ArrowRightIcon, DashboardIcon } from '@radix-ui/react-icons'
+import { ArrowRightIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -19,27 +19,29 @@ const Navbar = async () => {
             <Image src={stackIcon} alt="Stack icon" />
           </Link>
           <Link href="/">
-            <span className="text-2xl font-bold text-primary">Klipp</span>
+            <span className="text-2xl font-bold text-primary ">Klipp</span>
           </Link>
         </div>
-        <div className="m-2 flex items-center space-x-2 p-2">
-          <Link href="/dashboard">
-            <Button
-              className="flex items-center space-x-1 bg-purple-600 font-medium text-neutral-200 transition hover:scale-110 hover:bg-purple-500"
-              size="sm"
+        <div className="m-2 flex items-center space-x-5 p-2">
+          <div className="flex space-x-3">
+            <Link
+              className="font-medium text-slate-500 hover:text-slate-700/90"
+              href="/pricing"
             >
-              <DashboardIcon />
-              <span>Dashboard</span>
-            </Button>
-          </Link>
+              Pricing
+            </Link>
+            <Link
+              className="font-medium text-slate-500 hover:text-slate-700/90"
+              href="/dashboard"
+            >
+              Dashboard
+            </Link>
+          </div>
           {!userId ? (
             <SignInButton mode="modal">
-              <Button
-                className="flex items-center space-x-1 font-medium text-neutral-200 transition hover:scale-110"
-                size="sm"
-              >
+              <Button className="text-md flex items-center space-x-1 bg-purple-600 font-medium text-neutral-200  hover:bg-purple-600/90">
                 <span>Signin</span>
-                <ArrowRightIcon />
+                <ArrowRightIcon width={20} height={20} />
               </Button>
             </SignInButton>
           ) : (
