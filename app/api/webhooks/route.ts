@@ -1,3 +1,4 @@
+import prisma from '@/prisma/client'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { headers } from 'next/headers'
 import { Webhook } from 'svix'
@@ -49,13 +50,30 @@ export async function POST(req: Request) {
   }
 
   // Do something with the payload
-  // For this guide, you simply log the payload to the console
-  const { id } = evt.data
   const eventType = evt.type
 
-  if (evt.type === 'user.created') {
-    const clerkUserId = evt.data.id
-    const email = evt.data.email_addresses[0].email_address
+  try {
+    if (eventType === 'user.created') {
+      const clerkUserId = evt.data.id
+      const email = evt.data.email_addresses[0].email_address
+      await prisma.user.create({
+        data: {
+          email,
+          clerkUserId,
+        },
+      })
+    } else if (eventType === 'user.deleted') {
+      const clerkUserId = evt.data.id
+      const user = await prisma.user.findUnique({
+        where: { clerkUserId },
+      })
+      if (user) await prisma.user.delete({ where: { id: user.id } })
+    }
+  } catch (error) {
+    console.log(
+      'Error occurred while performing db operation with clerk data: ',
+      error
+    )
   }
 
   return new Response('', { status: 200 })
