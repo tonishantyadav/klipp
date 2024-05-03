@@ -6,7 +6,6 @@ import { ArrowRightIcon, DashboardIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import Link from 'next/link'
 import stackIcon from '../../public/stack-icon.svg'
-import AvatarIcon from '@radix-ui/react-icons'
 
 const Navbar = async () => {
   const { userId } = auth()
