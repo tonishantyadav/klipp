@@ -26,10 +26,8 @@ export default function RootLayout({
             inter.className
           )}
         >
-          <div className="bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]">
-            <Navbar />
-            <main>{children}</main>
-          </div>
+          <Navbar />
+          <main>{children}</main>
         </body>
       </html>
     </ClerkProvider>

@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <>
       <Container className="grid grid-rows-3 space-y-1">
-        <div className="flex flex-col items-center justify-center space-y-5 text-center">
+        <div className="flex flex-col items-center justify-center space-y-5 border border-red-500 text-center">
           <HeaderSection />
         </div>
         <div className="flex flex-col items-center justify-center">

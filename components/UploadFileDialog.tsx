@@ -14,12 +14,12 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { UploadIcon } from '@radix-ui/react-icons'
 
-const UploadPdfFileButton = () => {
+const UploadFileDialog = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="flex space-x-1" size="lg">
-          <UploadIcon width={20} height={20} />
+        <Button className="bg flex space-x-1">
+          <UploadIcon />
           <span>Upload</span>
         </Button>
       </DialogTrigger>
@@ -52,4 +52,4 @@ const UploadPdfFileButton = () => {
   )
 }
 
-export default UploadPdfFileButton
+export default UploadFileDialog
