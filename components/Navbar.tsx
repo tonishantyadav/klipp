@@ -1,4 +1,4 @@
-import { Container } from '@/components/Container'
+import Container from '@/components/Container'
 import { Button } from '@/components/ui/button'
 import stackIcon from '@/public/stack-icon.svg'
 import { SignInButton, UserButton } from '@clerk/nextjs'
@@ -39,7 +39,7 @@ const Navbar = async () => {
           </div>
           {!userId ? (
             <SignInButton mode="modal">
-              <Button className="text-md flex items-center space-x-1 bg-slate-700/90 bg-gradient-to-r font-medium text-neutral-200 hover:bg-slate-700/100">
+              <Button className="text-md flex items-center space-x-1 bg-slate-800/90 bg-gradient-to-r font-medium text-neutral-200 hover:bg-slate-800/95">
                 <span>Signin</span>
                 <ArrowRightIcon width={20} height={20} />
               </Button>

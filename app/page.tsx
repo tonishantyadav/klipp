@@ -1,5 +1,5 @@
-import { Container } from '@/components/Container'
-import { ScrollToTopButton } from '@/components/ScrollToTopButton'
+import Container from '@/components/Container'
+import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { Button } from '@/components/ui/button'
 import dashboardPreview from '@/public/dashboard-preview.jpg'
 import hightVoltage from '@/public/high-voltage.svg'

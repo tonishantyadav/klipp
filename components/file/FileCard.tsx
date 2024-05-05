@@ -1,18 +1,29 @@
-import { File } from '@prisma/client'
-import { FileTextIcon } from '@radix-ui/react-icons'
-import Link from 'next/link'
 import { Card, CardHeader } from '@/components/ui/card'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { File } from '@prisma/client'
+import {
+  DotsHorizontalIcon,
+  FileTextIcon,
+  Pencil1Icon,
+  TrashIcon,
+} from '@radix-ui/react-icons'
+import Link from 'next/link'
+import { Button } from '../ui/button'
 
-var randomColor = require('randomcolor')
+let randomColor = require('randomcolor')
 
-const FileCard = ({ file }: { file: File }) => {
+export const FileCard = ({ file }: { file: File }) => {
   const color = randomColor({
     luminosity: 'dark',
   })
 
   return (
-    <Card className="mx-2 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
-      <CardHeader className="flex flex-row items-center">
+    <Card className="group mx-2 cursor-pointer">
+      <CardHeader className="flex flex-row items-center justify-between">
         <div className="flex items-center gap-2">
           <FileTextIcon
             className="h-4 w-4"
@@ -22,9 +33,36 @@ const FileCard = ({ file }: { file: File }) => {
           />
           <Link href={`/dashboard/file/${file.id}`}>{file.name}</Link>
         </div>
+        <div className="opacity-0 group-hover:opacity-100">
+          <FileCardOptionDialog file={file} />
+        </div>
       </CardHeader>
     </Card>
   )
 }
 
-export default FileCard
+const FileCardOptionDialog = ({ file }: { file: File }) => {
+  return (
+    <Popover>
+      <PopoverTrigger>
+        <DotsHorizontalIcon />
+      </PopoverTrigger>
+      <PopoverContent className=" max-w-fit space-y-1" side="right">
+        <Button
+          className="flex w-full cursor-pointer items-center space-x-1"
+          variant="ghost"
+        >
+          <Pencil1Icon />
+          <span>Edit</span>
+        </Button>
+        <Button
+          className="flex w-full cursor-pointer items-center space-x-1"
+          variant="ghost"
+        >
+          <TrashIcon />
+          <span>Delete</span>
+        </Button>
+      </PopoverContent>
+    </Popover>
+  )
+}

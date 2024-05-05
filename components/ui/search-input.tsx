@@ -18,7 +18,10 @@ export const SearchInput = () => {
         />
       </div>
       <div className="py-2 pr-2">
-        <Button type="submit" className="flex space-x-1">
+        <Button
+          type="submit"
+          className="flex space-x-1 bg-slate-800/90 hover:bg-slate-800/95"
+        >
           <MagnifyingGlassIcon className="h-5 w-5" />
           <span>Search</span>
         </Button>
