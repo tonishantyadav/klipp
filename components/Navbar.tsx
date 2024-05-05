@@ -25,13 +25,13 @@ const Navbar = async () => {
         <div className="m-2 flex items-center space-x-5 p-2">
           <div className="flex space-x-3">
             <Link
-              className="font-medium text-slate-500 hover:text-slate-700/90"
+              className=" text-lg text-slate-500 hover:text-slate-700/90"
               href="/pricing"
             >
               Pricing
             </Link>
             <Link
-              className="font-medium text-slate-500 hover:text-slate-700/90"
+              className=" text-lg text-slate-500 hover:text-slate-700/90"
               href="/dashboard"
             >
               Dashboard
@@ -39,7 +39,7 @@ const Navbar = async () => {
           </div>
           {!userId ? (
             <SignInButton mode="modal">
-              <Button className="text-md flex items-center space-x-1 bg-purple-600 font-medium text-neutral-200  hover:bg-purple-600/90">
+              <Button className="text-md flex items-center space-x-1 bg-slate-700/90 bg-gradient-to-r font-medium text-neutral-200 hover:bg-slate-700/100">
                 <span>Signin</span>
                 <ArrowRightIcon width={20} height={20} />
               </Button>
