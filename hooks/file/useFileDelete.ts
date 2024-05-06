@@ -13,7 +13,6 @@ export const useFileDelete = () => {
     },
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['files'] })
-      toast.success(response.success)
     },
     onError: (error) => {
       const errorMessage = handleError(error)
