@@ -1,9 +1,11 @@
+import { Button } from '@/components/ui/button'
 import { Card, CardHeader } from '@/components/ui/card'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import { useFileDelete } from '@/hooks/file/useFileDelete'
 import { File } from '@prisma/client'
 import {
   DotsHorizontalIcon,
@@ -12,7 +14,6 @@ import {
   TrashIcon,
 } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import { Button } from '../ui/button'
 
 let randomColor = require('randomcolor')
 
@@ -42,6 +43,12 @@ export const FileCard = ({ file }: { file: File }) => {
 }
 
 const FileCardOptionDialog = ({ file }: { file: File }) => {
+  const deleteFile = useFileDelete()
+
+  const onDelete = async () => {
+    await deleteFile.mutateAsync(file.id)
+  }
+
   return (
     <Popover>
       <PopoverTrigger>
@@ -58,6 +65,7 @@ const FileCardOptionDialog = ({ file }: { file: File }) => {
         <Button
           className="flex w-full cursor-pointer items-center space-x-1"
           variant="ghost"
+          onClick={onDelete}
         >
           <TrashIcon />
           <span>Delete</span>
