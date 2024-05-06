@@ -28,8 +28,10 @@ export default function RootLayout({
       >
         <ClerkProvider>
           <QueryClientProvider>
-            <Navbar />
-            <main>{children}</main>
+            <div className="min-h-screen bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]">
+              <Navbar />
+              <main>{children}</main>
+            </div>
           </QueryClientProvider>
         </ClerkProvider>
       </body>

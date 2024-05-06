@@ -1,18 +1,9 @@
-import { Button } from '@/components/ui/button'
+import FileDeleteDialog from '@/components/file/FileDeleteDialog'
+import FileEditDialog from '@/components/file/FileEditDialog'
 import { Card, CardHeader } from '@/components/ui/card'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
 import { File } from '@prisma/client'
-import {
-  DotsHorizontalIcon,
-  FileTextIcon,
-  Pencil1Icon,
-} from '@radix-ui/react-icons'
+import { FileTextIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import FileDeleteAlertDialog from './FileDeleteAlertDialog'
 
 let randomColor = require('randomcolor')
 
@@ -33,30 +24,11 @@ export const FileCard = ({ file }: { file: File }) => {
           />
           <Link href={`/dashboard/file/${file.id}`}>{file.name}</Link>
         </div>
-        <div className="opacity-0 group-hover:opacity-100">
-          <FileCardOptionDialog file={file} />
+        <div className="flex gap-2 opacity-0 group-hover:opacity-100">
+          <FileEditDialog file={file} />
+          <FileDeleteDialog file={file} />
         </div>
       </CardHeader>
     </Card>
-  )
-}
-
-const FileCardOptionDialog = ({ file }: { file: File }) => {
-  return (
-    <Popover>
-      <PopoverTrigger>
-        <DotsHorizontalIcon />
-      </PopoverTrigger>
-      <PopoverContent className="w-[200px] space-y-1" side="right">
-        <Button
-          className="flex w-full cursor-pointer items-center space-x-1"
-          size="sm"
-        >
-          <Pencil1Icon />
-          <span>Edit</span>
-        </Button>
-        <FileDeleteAlertDialog id={file.id} />
-      </PopoverContent>
-    </Popover>
   )
 }

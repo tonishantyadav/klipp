@@ -20,10 +20,10 @@ const UploadFileDialog = () => {
       <DialogTrigger asChild>
         <Button className="bg flex space-x-1">
           <UploadIcon className="h-4 w-4" />
-          <span>Upload a file</span>
+          <span>Upload</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[400px]">
+      <DialogContent className="w-80 rounded-lg md:w-full lg:w-full">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>

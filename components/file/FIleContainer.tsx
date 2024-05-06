@@ -5,7 +5,7 @@ import { useFiles } from '@/hooks/file/useFiles'
 import { File } from '@prisma/client'
 import { RocketIcon } from '@radix-ui/react-icons'
 import { useEffect, useState } from 'react'
-import PacmanLoader from 'react-spinners/PacmanLoader'
+import ClipLoader from 'react-spinners/ClipLoader'
 
 const FileContainer = () => {
   const { data: response, isSuccess, isLoading } = useFiles()
@@ -57,7 +57,7 @@ const EmptyFileContainer = () => {
 const FileContainerSkeleton = () => {
   return (
     <div className="flex h-[200px] flex-col items-center justify-center">
-      <PacmanLoader color="#cbd5e1" size={20} />
+      <ClipLoader color="gray" />
     </div>
   )
 }

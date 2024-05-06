@@ -9,33 +9,20 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import { TrashIcon } from '@radix-ui/react-icons'
-import { Button } from '@/components/ui/button'
 import { useFileDelete } from '@/hooks/file/useFileDelete'
+import { File } from '@prisma/client'
+import { TrashIcon } from '@radix-ui/react-icons'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-const FileDeleteAlertDialog = ({ id }: { id: string }) => {
+const FileDeleteDialog = ({ file }: { file: File }) => {
   const deleteFile = useFileDelete()
 
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button
-          className="flex w-full cursor-pointer items-center space-x-1"
-          variant="destructive"
-          size="sm"
-        >
-          {deleteFile.isPending ? (
-            <BeatLoader size={5} />
-          ) : (
-            <>
-              <TrashIcon />
-              <span>Delete</span>
-            </>
-          )}
-        </Button>
+        <TrashIcon className="text-destructive" />
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="w-80 rounded-lg md:w-full lg:w-full">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
@@ -45,8 +32,14 @@ const FileDeleteAlertDialog = ({ id }: { id: string }) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={async () => deleteFile.mutateAsync(id)}>
-            Continue
+          <AlertDialogAction
+            onClick={async () => deleteFile.mutateAsync(file.id)}
+          >
+            {deleteFile.isPending ? (
+              <BeatLoader size={5} color="white" />
+            ) : (
+              'Continue'
+            )}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -54,4 +47,4 @@ const FileDeleteAlertDialog = ({ id }: { id: string }) => {
   )
 }
 
-export default FileDeleteAlertDialog
+export default FileDeleteDialog

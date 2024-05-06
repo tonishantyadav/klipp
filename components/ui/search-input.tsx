@@ -1,13 +1,12 @@
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { FileTextIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons'
+import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 
 export const SearchInput = () => {
   return (
-    <div className="flex space-x-2 rounded-md shadow-sm lg:w-3/5">
+    <div className="flex w-3/4 space-x-2 rounded-md">
       <div className="relative w-full p-2">
         <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
-          <FileTextIcon className="h-5 w-5 text-gray-500/60" />
+          <MagnifyingGlassIcon className="h-5 w-5 text-gray-500/60" />
         </div>
         <Input
           type="text"
@@ -16,15 +15,6 @@ export const SearchInput = () => {
           placeholder="Search"
           required
         />
-      </div>
-      <div className="py-2 pr-2">
-        <Button
-          type="submit"
-          className="flex space-x-1 bg-slate-800/90 hover:bg-slate-800/95"
-        >
-          <MagnifyingGlassIcon className="h-5 w-5" />
-          <span>Search</span>
-        </Button>
       </div>
     </div>
   )
