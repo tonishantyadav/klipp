@@ -5,9 +5,10 @@ import { useFiles } from '@/hooks/file/useFiles'
 import { File } from '@prisma/client'
 import { RocketIcon } from '@radix-ui/react-icons'
 import { useEffect, useState } from 'react'
+import PacmanLoader from 'react-spinners/PacmanLoader'
 
 const FileContainer = () => {
-  const { data: response, isSuccess } = useFiles()
+  const { data: response, isSuccess, isLoading } = useFiles()
   const [files, setFiles] = useState<File[]>([])
 
   useEffect(() => {
@@ -16,7 +17,9 @@ const FileContainer = () => {
 
   return (
     <div className="mx-3 mb-5 rounded-lg bg-gray-100/60 ring-1 ring-inset ring-gray-900/10">
-      {files.length ? (
+      {isLoading ? (
+        <FileContainerSkeleton />
+      ) : files.length ? (
         <FiledFileContainer files={files} />
       ) : (
         <EmptyFileContainer />
@@ -47,6 +50,14 @@ const EmptyFileContainer = () => {
         </span>
       </div>
       <RocketIcon className="h-10 w-10 text-slate-500/40" />
+    </div>
+  )
+}
+
+const FileContainerSkeleton = () => {
+  return (
+    <div className="flex h-[200px] flex-col items-center justify-center">
+      <PacmanLoader color="#cbd5e1" size={20} />
     </div>
   )
 }

@@ -10,7 +10,6 @@ import {
   DotsHorizontalIcon,
   FileTextIcon,
   Pencil1Icon,
-  TrashIcon,
 } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import FileDeleteAlertDialog from './FileDeleteAlertDialog'
