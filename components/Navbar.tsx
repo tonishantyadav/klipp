@@ -7,7 +7,7 @@ import { ArrowRightIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const Navbar = async () => {
+const Navbar = () => {
   const { userId } = auth()
 
   return (
@@ -22,26 +22,29 @@ const Navbar = async () => {
             <span className="text-2xl font-bold text-primary ">Klipp</span>
           </Link>
         </div>
-        <div className="m-2 flex items-center space-x-5 p-2">
-          <div className="flex space-x-3">
+        <div className="m-2 flex items-center justify-center gap-3 p-2">
+          <div className="flex">
             <Link
-              className=" text-lg text-slate-500 hover:text-slate-700/90"
+              className="flex h-8 items-center rounded-sm font-medium  text-zinc-500/80 hover:bg-primary hover:text-neutral-50"
               href="/pricing"
             >
-              Pricing
+              <span className="p-2">Pricing</span>
             </Link>
             <Link
-              className=" text-lg text-slate-500 hover:text-slate-700/90"
+              className="text-md flex h-8 items-center rounded-sm font-medium text-zinc-500/80  hover:bg-primary hover:text-neutral-50"
               href="/dashboard"
             >
-              Dashboard
+              <span className="p-2">Dashboard</span>
             </Link>
           </div>
           {!userId ? (
             <SignInButton mode="modal">
-              <Button className="text-md flex items-center space-x-1 bg-slate-800/90 bg-gradient-to-r font-medium text-neutral-200 hover:bg-slate-800/95">
-                <span>Signin</span>
-                <ArrowRightIcon width={20} height={20} />
+              <Button
+                className="text-md flex items-center space-x-1 bg-slate-900/95 bg-gradient-to-r font-medium text-neutral-200 hover:bg-slate-800/90"
+                size="sm"
+              >
+                <span className="text-sm">Signin</span>
+                <ArrowRightIcon />
               </Button>
             </SignInButton>
           ) : (
