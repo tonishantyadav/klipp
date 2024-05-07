@@ -16,7 +16,7 @@ const FileDeleteDialog = ({ file }: { file: File }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Pencil2Icon className=" text-primary" />
+        <Pencil2Icon className="text-primary" />
       </AlertDialogTrigger>
       <AlertDialogContent className="w-80 rounded-lg md:w-full lg:w-full">
         <AlertDialogHeader>

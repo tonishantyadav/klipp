@@ -5,7 +5,7 @@ import { useFiles } from '@/hooks/file/useFiles'
 import { File } from '@prisma/client'
 import { RocketIcon } from '@radix-ui/react-icons'
 import { useEffect, useState } from 'react'
-import ClipLoader from 'react-spinners/ClipLoader'
+import BarLoader from 'react-spinners/BarLoader'
 
 const FileContainer = () => {
   const { data: response, isSuccess, isLoading } = useFiles()
@@ -18,7 +18,7 @@ const FileContainer = () => {
   return (
     <div className="boder-green-600 mx-3 mb-5 flex h-96 flex-col items-center justify-center rounded-lg border bg-gray-100/60 ring-1 ring-inset ring-gray-900/10">
       {isLoading ? (
-        <ClipLoader color="gray" />
+        <BarLoader color="gray" />
       ) : files.length ? (
         <FiledFileContainer files={files} />
       ) : (
