@@ -16,9 +16,9 @@ const FileContainer = () => {
   }, [response, isSuccess])
 
   return (
-    <div className="mx-3 mb-5 rounded-lg bg-gray-100/60 ring-1 ring-inset ring-gray-900/10">
+    <div className="boder-green-600 mx-3 mb-5 flex h-96 flex-col items-center justify-center rounded-lg border bg-gray-100/60 ring-1 ring-inset ring-gray-900/10">
       {isLoading ? (
-        <FileContainerSkeleton />
+        <ClipLoader color="gray" />
       ) : files.length ? (
         <FiledFileContainer files={files} />
       ) : (
@@ -30,7 +30,7 @@ const FileContainer = () => {
 
 const FiledFileContainer = ({ files }: { files: File[] }) => {
   return (
-    <div className="m-3 grid grid-cols-1 gap-x-2 gap-y-4 p-3 md:grid-cols-2 lg:grid-cols-3">
+    <div className="hide-scrollbar grid h-full grid-cols-1 gap-x-2 gap-y-4 overflow-y-auto px-2.5 py-6 md:grid-cols-2 lg:grid-cols-3">
       {files.map((file) => (
         <FileCard file={file} key={file.id} />
       ))}
@@ -50,14 +50,6 @@ const EmptyFileContainer = () => {
         </span>
       </div>
       <RocketIcon className="h-10 w-10 text-slate-500/40" />
-    </div>
-  )
-}
-
-const FileContainerSkeleton = () => {
-  return (
-    <div className="flex h-[200px] flex-col items-center justify-center">
-      <ClipLoader color="gray" />
     </div>
   )
 }
