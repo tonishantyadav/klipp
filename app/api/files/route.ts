@@ -1,10 +1,23 @@
 import prisma from '@/prisma/client'
+import { auth } from '@clerk/nextjs/server'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
+  const { userId: clerkUserId } = auth()
+
   try {
-    const files = await prisma.file.findMany()
-    return NextResponse.json(files)
+    if (clerkUserId) {
+      const user = await prisma.user.findUnique({
+        where: { clerkUserId },
+      })
+      const files = await prisma.file.findMany({
+        where: { userId: user!.id },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+      return NextResponse.json(files)
+    }
   } catch (error) {
     return NextResponse.json(
       {
