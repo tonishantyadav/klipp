@@ -4,17 +4,17 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-export const useFileDelete = () => {
+export const useFileUpdate = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async (id: string) => await axios.delete(`/api/files/${id}`),
-    onMutate: async (id: string) => {
-      await queryClient.cancelQueries({ queryKey: ['files'] })
+    mutationFn: async ({ id, name }: { id: string; name: string }) =>
+      await axios.patch(`/api/files/${id}`, { name }),
+    onMutate: async ({ id, name }: { id: string; name: string }) => {
       const files = queryClient.getQueryData<File[]>(['files'])
       if (files) {
         queryClient.setQueryData(['files'], () =>
-          files.filter((file) => file.id !== id)
+          files.map((file) => (file.id === id ? { ...file, name } : file))
         )
       }
       return { files }

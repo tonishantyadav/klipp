@@ -1,25 +1,19 @@
 'use client'
 
 import { FileCard } from '@/components/file/FileCard'
-import { useFiles } from '@/hooks/file/useFiles'
+import { useFiles } from '@/hooks/file'
 import { File } from '@prisma/client'
 import { RocketIcon } from '@radix-ui/react-icons'
-import { useEffect, useState } from 'react'
 import BarLoader from 'react-spinners/BarLoader'
 
-const FileContainer = () => {
-  const { data: response, isSuccess, isLoading } = useFiles()
-  const [files, setFiles] = useState<File[]>([])
-
-  useEffect(() => {
-    if (isSuccess) setFiles(response.data)
-  }, [response, isSuccess])
+export const FileContainer = () => {
+  const { data: files, isLoading } = useFiles()
 
   return (
     <div className="boder-green-600 mx-3 mb-5 flex h-96 flex-col items-center justify-center rounded-lg border bg-gray-100/60 ring-1 ring-inset ring-gray-900/10">
       {isLoading ? (
         <BarLoader color="gray" />
-      ) : files.length ? (
+      ) : files && files.length ? (
         <FiledFileContainer files={files} />
       ) : (
         <EmptyFileContainer />
@@ -53,5 +47,3 @@ const EmptyFileContainer = () => {
     </div>
   )
 }
-
-export default FileContainer

@@ -9,12 +9,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import { useFileDelete } from '@/hooks/file/useFileDelete'
+import { useFileDelete } from '@/hooks/file'
 import { File } from '@prisma/client'
 import { TrashIcon } from '@radix-ui/react-icons'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-const FileDeleteDialog = ({ file }: { file: File }) => {
+export const FileDeleteDialog = ({ file }: { file: File }) => {
   const deleteFile = useFileDelete()
 
   return (
@@ -32,9 +32,7 @@ const FileDeleteDialog = ({ file }: { file: File }) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction
-            onClick={async () => deleteFile.mutateAsync(file.id)}
-          >
+          <AlertDialogAction onClick={() => deleteFile.mutateAsync(file.id)}>
             {deleteFile.isPending ? (
               <BeatLoader size={5} color="white" />
             ) : (
@@ -46,5 +44,3 @@ const FileDeleteDialog = ({ file }: { file: File }) => {
     </AlertDialog>
   )
 }
-
-export default FileDeleteDialog

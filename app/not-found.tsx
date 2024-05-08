@@ -8,7 +8,6 @@ const NotFoundPage = () => {
       <div className="grid h-screen place-content-center px-4">
         <div className="text-center">
           <h1 className="text-9xl font-black text-gray-400/35">404</h1>
-
           <p className="text-2xl font-bold tracking-tight text-slate-700/90 sm:text-4xl">
             Uh-oh!
           </p>

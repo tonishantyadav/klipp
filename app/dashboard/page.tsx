@@ -1,6 +1,6 @@
 import Container from '@/components/Container'
 import UploadFileDialog from '@/components/UploadFileDialog'
-import FileContainer from '@/components/file/FIleContainer'
+import { FileContainer } from '@/components/file'
 import { SearchInput } from '@/components/ui/search-input'
 import ToastContainer from '@/components/ui/toast'
 

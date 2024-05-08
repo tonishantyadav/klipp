@@ -1,22 +1,12 @@
-import FileDeleteDialog from '@/components/file/FileDeleteDialog'
-import FileEditDialog from '@/components/file/FileEditDialog'
+import { FileDeleteDialog, FileUpdateDialog } from '@/components/file'
 import { Card, CardHeader } from '@/components/ui/card'
 import { File } from '@prisma/client'
 import { FileTextIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 
 let randomColor = require('randomcolor')
 
 export const FileCard = ({ file }: { file: File }) => {
-  const [fileName, setFileName] = useState(file.name)
-
-  useEffect(() => {
-    setFileName(() =>
-      fileName.length > 20 ? `${fileName.slice(0, 16)}...` : fileName
-    )
-  }, [fileName])
-
   const color = randomColor({
     luminosity: 'dark',
   })
@@ -31,10 +21,14 @@ export const FileCard = ({ file }: { file: File }) => {
                 color: color,
               }}
             />
-            <Link href={`/dashboard/files/${file.id}`}>{fileName}</Link>
+            <Link href={`/dashboard/files/${file.id}`}>
+              {file.name.length > 20
+                ? `${file.name.slice(0, 15)}...`
+                : file.name}
+            </Link>
           </div>
           <div className="flex gap-2 opacity-0 group-hover:opacity-100">
-            <FileEditDialog file={file} />
+            <FileUpdateDialog file={file} />
             <FileDeleteDialog file={file} />
           </div>
         </div>
