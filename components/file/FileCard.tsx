@@ -12,7 +12,7 @@ export const FileCard = ({ file }: { file: File }) => {
   })
 
   return (
-    <Card className="group mx-2 cursor-pointer">
+    <Card className="group mx-2 w-80 cursor-pointer">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

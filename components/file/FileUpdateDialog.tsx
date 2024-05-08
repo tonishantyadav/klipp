@@ -20,7 +20,7 @@ import BeatLoader from 'react-spinners/BeatLoader'
 
 export const FileUpdateDialog = ({ file }: { file: File }) => {
   const fileUpdate = useFileUpdate()
-  const [fileName, setFileName] = useState(file.name)
+  const [fileName, setFileName] = useState('')
 
   return (
     <AlertDialog>
@@ -44,6 +44,7 @@ export const FileUpdateDialog = ({ file }: { file: File }) => {
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
+            disabled={!fileName}
             onClick={() =>
               fileUpdate.mutateAsync({ id: file.id, name: fileName })
             }

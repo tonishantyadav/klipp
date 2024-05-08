@@ -10,7 +10,7 @@ export const FileContainer = () => {
   const { data: files, isLoading } = useFiles()
 
   return (
-    <div className="boder-green-600 mx-3 mb-5 flex h-96 flex-col items-center justify-center rounded-lg border bg-gray-100/60 ring-1 ring-inset ring-gray-900/10">
+    <div className="mx-3 mb-5 flex h-96 flex-col items-center justify-center rounded-lg border bg-gray-100/60 ring-1 ring-inset ring-gray-900/10">
       {isLoading ? (
         <BarLoader color="gray" />
       ) : files && files.length ? (
@@ -24,7 +24,7 @@ export const FileContainer = () => {
 
 const FiledFileContainer = ({ files }: { files: File[] }) => {
   return (
-    <div className="hide-scrollbar grid h-full grid-cols-1 gap-x-2 gap-y-4 overflow-y-auto px-2.5 py-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="hide-scrollbar grid h-full grid-cols-1 gap-x-2 gap-y-4 overflow-y-auto py-6 md:grid-cols-2 lg:grid-cols-3">
       {files.map((file) => (
         <FileCard file={file} key={file.id} />
       ))}
