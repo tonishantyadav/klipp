@@ -7,9 +7,9 @@ export const FileUploadDialog = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg flex space-x-1">
-          <UploadIcon className="h-4 w-4" />
+        <Button className="flex space-x-1">
           <span>Upload</span>
+          <UploadIcon className="h-4 w-4" />
         </Button>
       </DialogTrigger>
       <DialogContent className="flex w-80 flex-col rounded-lg md:w-full lg:w-full">

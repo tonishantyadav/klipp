@@ -10,9 +10,11 @@ export const FileCard = ({ file }: { file: File }) => {
   const color = randomColor({
     luminosity: 'dark',
   })
+  const words = file.name.split(' ')
+  const displayName = words.length > 2 ? `${words[0]} ${words[1]}` : file.name
 
   return (
-    <Card className="group mx-2 w-80 cursor-pointer">
+    <Card className="group cursor-pointer">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -21,10 +23,11 @@ export const FileCard = ({ file }: { file: File }) => {
                 color: color,
               }}
             />
-            <Link href={`/dashboard/files/${file.id}`}>
-              {file.name.length > 20
-                ? `${file.name.slice(0, 15)}...`
-                : file.name}
+            <Link
+              href={`/dashboard/files/${file.id}`}
+              className="text-md truncate text-slate-700/90"
+            >
+              {displayName}
             </Link>
           </div>
           <div className="flex gap-2 opacity-0 group-hover:opacity-100">

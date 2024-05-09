@@ -50,10 +50,10 @@ const HeaderSection = () => {
       <div>
         <Link href="/dashboard">
           <Button
-            className="flex space-x-1 text-lg font-semibold transition hover:scale-110"
+            className="flex space-x-1 transition hover:scale-110"
             size="lg"
           >
-            <span>Get Started</span>
+            <span className="text-lg">Get Started</span>
             <ArrowRightIcon className="h-5 w-5" />
           </Button>
         </Link>

@@ -10,9 +10,13 @@ export const FileContainer = () => {
   const { data: files, isLoading } = useFiles()
 
   return (
-    <div className="mx-3 mb-5 flex h-96 flex-col items-center justify-center rounded-lg border bg-gray-100/60 ring-1 ring-inset ring-gray-900/10">
+    <div className="mx-3 mb-5 grid h-96 rounded-lg border bg-gray-100/60 ring-1 ring-inset ring-gray-900/10">
       {isLoading ? (
-        <BarLoader color="gray" />
+        <div className="flex flex-col items-center justify-center">
+          <div>
+            <BarLoader color="gray" />
+          </div>
+        </div>
       ) : files && files.length ? (
         <FiledFileContainer files={files} />
       ) : (
@@ -24,7 +28,7 @@ export const FileContainer = () => {
 
 const FiledFileContainer = ({ files }: { files: File[] }) => {
   return (
-    <div className="hide-scrollbar grid h-full grid-cols-1 gap-x-2 gap-y-4 overflow-y-auto py-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="hide-scrollbar grid h-full grid-cols-1 gap-x-2 gap-y-4 overflow-y-auto border px-3 py-6 md:grid-cols-2 lg:grid-cols-3">
       {files.map((file) => (
         <FileCard file={file} key={file.id} />
       ))}
@@ -36,10 +40,10 @@ const EmptyFileContainer = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-3 p-5">
       <div className="flex flex-col items-center">
-        <span className="text-2xl font-medium text-slate-500/40">
+        <span className="text-center text-xl font-medium text-slate-500/40 md:text-2xl lg:text-2xl">
           Umm nothing is cooked yet!
         </span>
-        <span className="text-sm text-slate-500/35">
+        <span className="text-xs text-slate-500/35 md:text-sm lg:text-sm">
           Start your cooking by uploading a file.
         </span>
       </div>
