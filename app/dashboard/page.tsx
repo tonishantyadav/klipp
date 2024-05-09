@@ -1,7 +1,7 @@
 import Container from '@/components/Container'
-import UploadFileDialog from '@/components/UploadFileDialog'
 import { FileContainer } from '@/components/file'
 import { SearchInput } from '@/components/ui/search-input'
+import { FileUploadDialog } from '@/components/file'
 import ToastContainer from '@/components/ui/toast'
 
 const DashboardPage = () => {
@@ -15,14 +15,14 @@ const DashboardPage = () => {
               Welcome to your <span className="text-primary">Dashboard</span>
             </h1>
             <p className="text-center text-sm text-zinc-500 md:text-lg lg:text-lg">
-              Manage your conversation with ease.
+              Manage your files and conversations with ease.
             </p>
           </div>
           <SearchInput />
         </div>
         <div className="grid grid-rows-[auto,1fr]">
           <div className="m-3 flex items-center justify-end rounded-lg ">
-            <UploadFileDialog />
+            <FileUploadDialog />
           </div>
           <FileContainer />
         </div>

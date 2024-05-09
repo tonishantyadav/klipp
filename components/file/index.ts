@@ -1,4 +1,6 @@
 export { FileCard } from './FileCard'
 export { FileContainer } from './FileContainer'
 export { FileDeleteDialog } from './FileDeleteDialog'
+export { FileDropzone } from './FileDropzone'
 export { FileUpdateDialog } from './FileUpdateDialog'
+export { FileUploadDialog } from './FileUploadDialog'
