@@ -22,7 +22,7 @@ export const SearchBar = () => {
       onSelect={onSelect}
       styling={{
         border: '2px solid #9ca3af',
-        color: '#9ca3af',
+        color: '#1e293b',
       }}
     />
   )

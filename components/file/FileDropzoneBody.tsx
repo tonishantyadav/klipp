@@ -8,7 +8,6 @@ export const FileDropzoneBody = ({
   getInputProps,
 }: {
   open: () => void
-
   getRootProps: () => DropzoneRootProps
   getInputProps: () => DropzoneInputProps
 }) => {
@@ -20,22 +19,7 @@ export const FileDropzoneBody = ({
       <input {...getInputProps()} />
       <div>
         <div className="flex flex-col items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide lucide-cloud-upload text-blue-600"
-          >
-            <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
-            <path d="M12 12v9" />
-            <path d="m16 16-4-4-4 4" />
-          </svg>{' '}
+          <UploadCloudSvg />
           <span className="text-md font-medium">Drag n Drop here</span>
         </div>
       </div>
@@ -61,5 +45,26 @@ export const FileDropzoneBody = ({
       </Button>
       <span className="text-xs">Upload PDF upto 5mb</span>
     </div>
+  )
+}
+
+const UploadCloudSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="48"
+      height="48"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-cloud-upload text-blue-600"
+    >
+      <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+      <path d="M12 12v9" />
+      <path d="m16 16-4-4-4 4" />
+    </svg>
   )
 }

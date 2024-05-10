@@ -4,7 +4,7 @@ import SearchBarSkeleton from '@/components/ui/search-bar-skeleton'
 import ToastContainer from '@/components/ui/toast'
 import dynamic from 'next/dynamic'
 
-const SearchInput = dynamic(
+const SearchBar = dynamic(
   () => import('@/components/ui/search-bar').then((mod) => mod.SearchBar),
   { loading: () => <SearchBarSkeleton />, ssr: false }
 )
@@ -23,7 +23,7 @@ const DashboardPage = () => {
               Manage your files and conversations with ease.
             </p>
           </div>
-          <SearchInput />
+          <SearchBar />
         </div>
         <div className="grid grid-rows-[auto,1fr]">
           <div className="m-3 flex items-center justify-end rounded-lg ">
