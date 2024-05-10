@@ -25,7 +25,7 @@ export const FileCard = ({ file }: { file: File }) => {
             />
             <Link
               href={`/dashboard/files/${file.id}`}
-              className="text-md truncate text-slate-700/90"
+              className="text-md text-slate-700/90 group-hover:text-slate-800"
             >
               {displayName}
             </Link>

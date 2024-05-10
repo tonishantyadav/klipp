@@ -1,29 +1,25 @@
 'use client'
 
 import { useFiles } from '@/hooks/file'
+import { File } from '@prisma/client'
+import { useRouter } from 'next/navigation'
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 export const SearchBar = () => {
+  const router = useRouter()
   const { data: files } = useFiles()
 
-  const handleOnSearch = (string: any, results: any) => {
-    // Triggered when the user types in the search input
-    console.log(string, results)
-  }
-
-  const handleOnHover = (file: any) => {
-    // Triggered when the user hovers over an item in the suggestions list
-    console.log('Item hovered:', file)
+  const onSelect = (file: File) => {
+    router.push(`/dashboard/files/${file.id}`)
   }
 
   return (
     <ReactSearchAutocomplete
-      className="w-3/4 text-primary"
+      className="w-3/4 cursor-pointer text-primary"
       placeholder="Search"
       items={files!}
-      onSearch={handleOnSearch}
-      onHover={handleOnHover}
       maxResults={5}
+      onSelect={onSelect}
       styling={{
         border: '2px solid #9ca3af',
         color: '#9ca3af',
