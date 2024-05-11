@@ -1,4 +1,3 @@
-import React from 'react'
 import { Progress } from '@/components/ui/progress'
 
 export const ShowUploadedFile = ({
@@ -17,7 +16,7 @@ export const ShowUploadedFile = ({
         {file.name.length > 30 ? `${file.name.slice(0, 30)}...` : file.name}
       </span>
       {isUploading && (
-        <Progress className="my-2 h-1 w-32" value={uploadProgress} />
+        <Progress className="my-2 h-1 w-3/4" value={uploadProgress} />
       )}
     </div>
   )
