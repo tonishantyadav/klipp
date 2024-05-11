@@ -2,16 +2,23 @@
 
 import { useUploadThing } from '@/lib/uploadthing'
 import { checkFileSize } from '@/utils/CheckFileSize'
+import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 import { toast } from 'react-toastify'
 import { UploadThingError } from 'uploadthing/server'
 
 export const useFileOnDrop = () => {
+  const router = useRouter()
+
   const [file, setFile] = useState<File | null>(null)
   const [isUploading, setIsUploading] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(0)
 
   const { startUpload } = useUploadThing('fileUploader', {
+    onClientUploadComplete: (res) => {
+      console.log(res)
+      router.push(`/dashboard/files/${res[0].key}`)
+    },
     onUploadError: () => {
       setFile(null)
       toast.error('An expected error occurred.')

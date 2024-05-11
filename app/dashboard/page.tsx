@@ -1,5 +1,5 @@
 import Container from '@/components/Container'
-import { FileContainer, FileUploadDialog } from '@/components/file'
+import { FileContainer } from '@/components/file'
 import SearchBarSkeleton from '@/components/ui/search-bar-skeleton'
 import ToastContainer from '@/components/ui/toast'
 import dynamic from 'next/dynamic'
@@ -7,6 +7,10 @@ import dynamic from 'next/dynamic'
 const SearchBar = dynamic(
   () => import('@/components/ui/search-bar').then((mod) => mod.SearchBar),
   { loading: () => <SearchBarSkeleton />, ssr: false }
+)
+
+const FileUploadDialog = dynamic(() =>
+  import('@/components/file').then((mod) => mod.FileUploadDialog)
 )
 
 const DashboardPage = () => {
