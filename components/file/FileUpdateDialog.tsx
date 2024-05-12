@@ -7,7 +7,6 @@ import {
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
-  AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
@@ -28,13 +27,13 @@ export const FileUpdateDialog = ({ file }: { file: File }) => {
         <Pencil2Icon className="text-primary" />
       </AlertDialogTrigger>
       <AlertDialogContent className="w-80 rounded-lg md:w-full lg:w-full">
-        <AlertDialogHeader>
+        <div className="flex flex-col gap-2 justify-start">
           <AlertDialogTitle>Edit your file name</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently update your file
             name and remove the old file name from our servers.
           </AlertDialogDescription>
-        </AlertDialogHeader>
+        </div>
         <Input
           placeholder={file.name}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -44,6 +43,7 @@ export const FileUpdateDialog = ({ file }: { file: File }) => {
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
+            className="mt-2"
             disabled={!fileName}
             onClick={() =>
               fileUpdate.mutateAsync({ id: file.id, name: fileName })

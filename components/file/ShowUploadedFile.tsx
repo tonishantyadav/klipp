@@ -10,7 +10,7 @@ export const ShowUploadedFile = ({
   uploadProgress: number
 }) => {
   return (
-    <div className="m-2.5 flex h-60 flex-col items-center justify-center rounded-lg border-2 border-dashed border-blue-500  bg-gray-200/60  text-zinc-500">
+    <div className="m-2.5 flex h-60 flex-col items-center justify-center text-zinc-500">
       <FileSvg />
       <span className="px-2 pt-2 text-center text-xs">
         {file.name.length > 30 ? `${file.name.slice(0, 30)}...` : file.name}

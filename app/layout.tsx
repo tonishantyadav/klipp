@@ -5,7 +5,6 @@ import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '@uploadthing/react/styles.css'
-
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -30,10 +29,8 @@ export default function RootLayout({
       >
         <ClerkProvider>
           <QueryClientProvider>
-            <div className="min-h-screen bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]">
-              <Navbar />
-              <main>{children}</main>
-            </div>
+            <Navbar />
+            <main>{children}</main>
           </QueryClientProvider>
         </ClerkProvider>
       </body>

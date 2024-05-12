@@ -1,3 +1,5 @@
+'use client'
+
 import { handleError } from '@/lib/error'
 import { File } from '@prisma/client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'

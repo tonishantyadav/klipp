@@ -1,6 +1,5 @@
-import React from 'react'
-import { DropzoneRootProps, DropzoneInputProps } from 'react-dropzone'
 import { Button } from '@/components/ui/button'
+import { DropzoneInputProps, DropzoneRootProps } from 'react-dropzone'
 
 export const FileDropzoneBody = ({
   open,
@@ -14,36 +13,17 @@ export const FileDropzoneBody = ({
   return (
     <div
       {...getRootProps()}
-      className="m-2.5 flex h-60 flex-col items-center justify-center rounded-lg border-2 border-dashed border-blue-500 bg-gray-200/60  py-2  text-zinc-400/95"
+      className="flex h-full flex-col items-center justify-center rounded-lg text-zinc-400/95"
     >
       <input {...getInputProps()} />
-      <div>
-        <div className="flex flex-col items-center justify-center">
-          <UploadCloudSvg />
-          <span className="text-md font-medium">Drag n Drop here</span>
-        </div>
-      </div>
+      <UploadCloudSvg />
+      <span className="text-xl font-medium">Drag and Drop</span>
       <span>or</span>
-      <Button className="my-2 flex gap-1" onClick={open}>
-        <span>Browse</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-arrow-up-from-line"
-        >
-          <path d="m18 9-6-6-6 6" />
-          <path d="M12 3v14" />
-          <path d="M5 21h14" />
-        </svg>
+      <Button className="my-2" onClick={open}>
+        Browse
       </Button>
-      <span className="text-xs">Upload PDF upto 5mb</span>
+
+      <span className="text-sm font-medium">Upload PDF upto 4mb</span>
     </div>
   )
 }
@@ -52,8 +32,8 @@ const UploadCloudSvg = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="48"
-      height="48"
+      width="72"
+      height="72"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

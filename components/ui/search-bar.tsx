@@ -15,14 +15,15 @@ export const SearchBar = () => {
 
   return (
     <ReactSearchAutocomplete
-      className="w-3/4 cursor-pointer text-primary"
+      className="w-2/4 cursor-pointer text-primary pr-5"
       placeholder="Search"
       items={files!}
       maxResults={5}
       onSelect={onSelect}
       styling={{
-        border: '2px solid #9ca3af',
+        border: '1px solid #9ca3af',
         color: '#1e293b',
+        borderRadius: '6px',
       }}
     />
   )

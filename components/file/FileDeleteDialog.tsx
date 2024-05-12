@@ -1,3 +1,5 @@
+'use client'
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -5,7 +7,6 @@ import {
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
-  AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
@@ -23,21 +24,24 @@ export const FileDeleteDialog = ({ file }: { file: File }) => {
         <TrashIcon className="text-destructive" />
       </AlertDialogTrigger>
       <AlertDialogContent className="w-80 rounded-lg md:w-full lg:w-full">
-        <AlertDialogHeader>
+        <div className="flex flex-col justify-start gap-2">
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your file
             and remove your conversation from our servers.
           </AlertDialogDescription>
-        </AlertDialogHeader>
+        </div>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => deleteFile.mutateAsync(file.id)}>
+          <AlertDialogAction
+            className="mt-2"
+            onClick={() => deleteFile.mutateAsync(file.id)}
+          >
             {deleteFile.isPending ? (
               <BeatLoader size={5} color="white" />
             ) : (
               'Continue'
-            )}
+            )}{' '}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

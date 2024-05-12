@@ -16,7 +16,6 @@ export const useFileOnDrop = () => {
 
   const { startUpload } = useUploadThing('fileUploader', {
     onClientUploadComplete: (res) => {
-      console.log(res)
       router.push(`/dashboard/files/${res[0].key}`)
     },
     onUploadError: () => {
