@@ -14,7 +14,7 @@ export const FileDropzone = () => {
   })
 
   return (
-    <>
+    <div className="mx-5 my-5 h-full rounded-lg border-2 border-dashed border-gray-300 bg-neutral-100/80">
       {file ? (
         <ShowUploadedFile
           file={file}
@@ -28,6 +28,6 @@ export const FileDropzone = () => {
           getInputProps={getInputProps}
         />
       )}
-    </>
+    </div>
   )
 }

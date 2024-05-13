@@ -1,22 +1,28 @@
 import Container from '@/components/Container'
 import { Dropzone, RecentUploads } from '@/components/dashboard'
+import { LineChartIcon } from '@/components/dashboard/MonthlyUploadsGraph'
+import Loader from '@/components/ui/loader'
 import ToastContainer from '@/components/ui/toast'
-import prisma from '@/prisma/client'
-import { calculateUploadsPerDay } from '@/utils/UploadsCount'
+import { currentMonthYear } from '@/utils/CurrentMonthYear'
 import dynamic from 'next/dynamic'
-import BeatLoader from 'react-spinners/BeatLoader'
 
-const Insights = dynamic(
-  () => import('@/components/dashboard/Insights').then((mod) => mod.Insights),
+const MonthlyUploadsGraph = dynamic(
+  () =>
+    import('@/components/dashboard/MonthlyUploadsGraph').then(
+      (mod) => mod.MonthlyUploadsGraph
+    ),
   {
-    loading: () => <BeatLoader color="gray" />,
+    loading: () => (
+      <div className="flex h-96 flex-col items-center justify-center">
+        <Loader />
+      </div>
+    ),
     ssr: false,
   }
 )
 
-const DashboardPage = async () => {
-  const files = await prisma.file.findMany()
-  const result = calculateUploadsPerDay(files)
+const DashboardPage = () => {
+  const { month, year } = currentMonthYear()
 
   return (
     <>
@@ -26,8 +32,20 @@ const DashboardPage = async () => {
           <Dropzone />
           <RecentUploads />
         </div>
-        <div className="hide-scrollbar mb-20 flex w-full items-center justify-center overflow-y-auto rounded-md border-2 border-gray-300 bg-neutral-50/80 p-2 shadow-sm">
-          <Insights />
+        <div className="hide-scrollbar mb-20 flex w-full items-center justify-center overflow-y-auto rounded-lg border-2 border-gray-300 bg-neutral-50/80 p-2 shadow-sm">
+          <div className="flex w-full flex-col">
+            <div className="flex items-center justify-between gap-2 p-2 font-medium">
+              <div className="flex items-center gap-2 text-slate-700/90">
+                <LineChartIcon className="h-5 w-5" />
+                <span className="text-2xl">Monthly Uploads</span>
+              </div>
+              <div className="flex gap-1 text-sm text-slate-500">
+                <span>{month}</span>
+                <span>{year}</span>
+              </div>
+            </div>{' '}
+            <MonthlyUploadsGraph />
+          </div>
         </div>
       </Container>
     </>

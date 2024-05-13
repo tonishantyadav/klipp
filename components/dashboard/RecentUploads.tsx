@@ -1,12 +1,12 @@
 'use client'
 
 import { FileDeleteDialog, FileUpdateDialog } from '@/components/file'
+import Loader from '@/components/ui/loader'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { useFiles } from '@/hooks/file'
 import { File } from '@prisma/client'
 import { FileTextIcon, RocketIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import BarLoader from 'react-spinners/BarLoader'
 
 export const RecentUploads = () => {
   const { data: files, isLoading } = useFiles()
@@ -15,7 +15,7 @@ export const RecentUploads = () => {
     <div className="flex h-96 flex-col gap-3 rounded-md border-2 border-gray-300 bg-neutral-50 p-3 shadow-sm">
       {isLoading ? (
         <div className="flex h-full flex-col items-center justify-center">
-          <BarLoader color="gray" />
+          <Loader />
         </div>
       ) : files && files.length ? (
         <FiledRecentUploads files={files} />
