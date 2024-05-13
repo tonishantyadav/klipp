@@ -45,7 +45,7 @@ const FiledRecentUploads = ({ files }: { files: File[] }) => {
                       <FileTextIcon className="text-blue-600" />
                       <Link
                         className=" text-slate-700/90 group-hover:text-slate-900"
-                        href={`/dashboad/files/${file.id}`}
+                        href={`/dashboard/files/${file.id}`}
                         key={file.id}
                       >
                         {file.name}
