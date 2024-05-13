@@ -1,3 +1,5 @@
+import { SpinIcon } from '@/components/ui/icon'
+
 export const Loader = () => {
   return (
     <div role="status">
@@ -18,6 +20,15 @@ export const Loader = () => {
         />
       </svg>
       <span className="sr-only">Loading...</span>
+    </div>
+  )
+}
+
+export const LoaderWithMessage = ({ message }: { message: string }) => {
+  return (
+    <div className="mt-2 flex items-center gap-1">
+      <SpinIcon className="h-4 w-4 animate-spin text-slate-400/90" />
+      <span className="text-slate-400/90">{message}</span>
     </div>
   )
 }

@@ -17,7 +17,7 @@ export const FileDropzoneBody = ({
       className="flex h-full flex-col items-center justify-center rounded-lg text-zinc-400/95"
     >
       <input {...getInputProps()} />
-      <UploadCloudIcon />
+      <UploadCloudIcon className="text-blue-600" />
       <span className="text-xl font-medium">Drag and Drop</span>
       <span>or</span>
       <Button className="my-2" onClick={open}>

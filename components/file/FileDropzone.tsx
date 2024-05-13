@@ -5,7 +5,8 @@ import { useFileOnDrop } from '@/hooks/file'
 import { useDropzone } from 'react-dropzone'
 
 export const FileDropzone = () => {
-  const { onDrop, isUploading, uploadProgress, file } = useFileOnDrop()
+  const { onDrop, isUploading, isUploadDone, uploadProgress, file } =
+    useFileOnDrop()
   const { getRootProps, getInputProps, open } = useDropzone({
     onDrop,
     noClick: true,
@@ -19,6 +20,7 @@ export const FileDropzone = () => {
         <ShowUploadedFile
           file={file}
           isUploading={isUploading}
+          isUploadDone={isUploadDone}
           uploadProgress={uploadProgress}
         />
       ) : (

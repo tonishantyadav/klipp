@@ -1,6 +1,6 @@
 'use client'
 
-import { uploadCounts } from '@/data/UploadCounts'
+import { monthlyUploads } from '@/data/MonthlyUploads'
 import {
   Area,
   AreaChart,
@@ -12,7 +12,7 @@ import {
 } from 'recharts'
 
 export const MonthlyUploadsGraph = () => {
-  const data = uploadCounts()
+  const data = monthlyUploads()
 
   return (
     <ResponsiveContainer className="my-5" width="100%" height={350}>

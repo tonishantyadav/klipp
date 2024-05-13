@@ -12,10 +12,13 @@ export const useFileOnDrop = () => {
 
   const [file, setFile] = useState<File | null>(null)
   const [isUploading, setIsUploading] = useState(false)
+  const [isUploadDone, setIsUploadDone] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(0)
 
   const { startUpload } = useUploadThing('fileUploader', {
     onClientUploadComplete: (res) => {
+      setIsUploadDone(true)
+      setIsUploading(false)
       router.push(`/dashboard/files/${res[0].key}`)
     },
     onUploadError: () => {
@@ -46,7 +49,6 @@ export const useFileOnDrop = () => {
         throw new UploadThingError('File size exceed.')
 
       const response = await startUpload(acceptedFiles)
-      console.log(response)
       setUploadProgress(100)
     } catch (error: any) {
       setFile(null)
@@ -55,5 +57,5 @@ export const useFileOnDrop = () => {
     // eslint-disable-next-line
   }, [])
 
-  return { onDrop, isUploading, uploadProgress, file }
+  return { onDrop, isUploading, uploadProgress, file, isUploadDone }
 }

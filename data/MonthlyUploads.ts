@@ -1,4 +1,4 @@
-export const uploadCounts = () => [
+export const monthlyUploads = () => [
   {
     day: '1',
     uploads: 20,
