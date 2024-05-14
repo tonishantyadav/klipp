@@ -13,7 +13,7 @@ export const RecentUploads = () => {
   const { data: files, isLoading } = useFiles()
 
   return (
-    <div className="flex h-96 flex-col gap-3 rounded-md border-2 border-gray-300 bg-neutral-50 p-3 shadow-sm">
+    <div className="flex h-96 flex-col gap-3 rounded-md border-2 border-gray-300 bg-white p-3 shadow-sm">
       {isLoading ? (
         <div className="flex h-full flex-col items-center justify-center">
           <Loader />

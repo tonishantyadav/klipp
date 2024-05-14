@@ -32,7 +32,7 @@ const DashboardPage = () => {
           <Dropzone />
           <RecentUploads />
         </div>
-        <div className="hide-scrollbar mb-20 flex w-full items-center justify-center overflow-y-auto rounded-lg border-2 border-gray-300 bg-neutral-50/80 p-2 shadow-sm">
+        <div className="hide-scrollbar mb-20 flex w-full items-center justify-center overflow-y-auto rounded-lg border-2 border-gray-300 bg-white p-2 shadow-sm">
           <div className="flex w-full flex-col">
             <div className="flex items-center justify-between gap-2 p-2 font-medium">
               <div className="flex items-center gap-2 text-slate-700/90">
