@@ -40,7 +40,7 @@ const Navbar = () => {
           {!userId ? (
             <SignInButton mode="modal">
               <Button
-                className="text-md flex items-center space-x-1 bg-slate-800 bg-gradient-to-r font-medium text-neutral-200 hover:bg-slate-900"
+                className="text-md flex items-center space-x-1 bg-slate-800 bg-gradient-to-r font-medium text-white hover:bg-slate-900"
                 size="sm"
               >
                 <span className="text-sm">Signin</span>

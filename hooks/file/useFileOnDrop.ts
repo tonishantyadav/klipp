@@ -19,7 +19,7 @@ export const useFileOnDrop = () => {
     onClientUploadComplete: (res) => {
       setIsUploadDone(true)
       setIsUploading(false)
-      router.push(`/dashboard/files/${res[0].key}`)
+      router.push(`/dashboard/chat/?file=${res[0].key}`)
     },
     onUploadError: () => {
       setFile(null)
