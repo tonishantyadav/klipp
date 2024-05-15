@@ -1,16 +1,21 @@
-'use client'
-
 import { FileDeleteDialog, FileUpdateDialog } from '@/components/file'
 import { FireIcon } from '@/components/ui/icon'
 import { Loader } from '@/components/ui/loader'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
-import { useFiles } from '@/hooks/file'
+import prisma from '@/prisma/client'
 import { File } from '@prisma/client'
 import { FileTextIcon, RocketIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 
-export const RecentUploads = () => {
-  const { data: files, isLoading } = useFiles()
+export const RecentUploads = async () => {
+  let files: File[] = []
+  let isLoading = false
+
+  try {
+    isLoading = true
+    files = await prisma.file.findMany()
+    isLoading = false
+  } catch (error) {}
 
   return (
     <div className="flex h-96 flex-col gap-3 rounded-xl border-2 border-gray-300 p-3 shadow-sm">
