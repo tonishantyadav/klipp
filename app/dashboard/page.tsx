@@ -28,7 +28,7 @@ const DashboardPage = () => {
     <>
       <ToastContainer />
       <Container className="grid gap-2">
-        <div className="mt-20 grid gap-2 bg-neutral-50/80 md:grid-cols-2 lg:grid-cols-2">
+        <div className="mt-20 grid gap-2 md:grid-cols-2 lg:grid-cols-2">
           <Dropzone />
           <RecentUploads />
         </div>

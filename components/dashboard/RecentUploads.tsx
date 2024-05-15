@@ -13,7 +13,7 @@ export const RecentUploads = () => {
   const { data: files, isLoading } = useFiles()
 
   return (
-    <div className="flex h-96 flex-col gap-3 rounded-xl border-2 border-gray-300 bg-white p-3 shadow-sm">
+    <div className="flex h-96 flex-col gap-3 rounded-xl border-2 border-gray-300 p-3 shadow-sm">
       {isLoading ? (
         <div className="flex h-full flex-col items-center justify-center">
           <Loader />
@@ -30,7 +30,7 @@ export const RecentUploads = () => {
 const FiledRecentUploads = ({ files }: { files: File[] }) => {
   return (
     <>
-      <div className="flex items-center gap-2 p-2 px-2 font-medium text-slate-700/90">
+      <div className="flex items-center gap-2 p-2 font-medium text-slate-700/90">
         <RocketIcon className="h-5 w-5" />
         <span className="text-2xl">Recent Uploads</span>
       </div>

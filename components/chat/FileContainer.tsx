@@ -1,5 +1,4 @@
-import React from 'react'
-import { PdfRenderer } from './PdfRenderer'
+import { PdfRenderer } from '@/components/chat/PdfRenderer'
 import { File } from '@prisma/client'
 
 export const FileContainer = ({ file }: { file: File }) => {

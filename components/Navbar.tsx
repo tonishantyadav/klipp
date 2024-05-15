@@ -25,13 +25,13 @@ const Navbar = () => {
         <div className="m-2 flex items-center justify-center gap-3 p-2">
           <div className="flex">
             <Link
-              className="flex h-8 items-center rounded-sm font-medium  text-zinc-500/80 hover:bg-primary hover:text-neutral-50"
+              className="flex h-8 items-center rounded-sm font-medium  text-slate-800/80 hover:bg-primary hover:text-neutral-50"
               href="/pricing"
             >
               <span className="p-2">Pricing</span>
             </Link>
             <Link
-              className="text-md flex h-8 items-center rounded-sm font-medium text-zinc-500/80  hover:bg-primary hover:text-neutral-50"
+              className="text-md flex h-8 items-center rounded-sm font-medium text-slate-800/80  hover:bg-primary hover:text-neutral-50"
               href="/dashboard"
             >
               <span className="p-2">Dashboard</span>
