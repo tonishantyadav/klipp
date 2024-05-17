@@ -2,8 +2,8 @@
 
 import { Topbar } from '@/components/pdf-render'
 import { Loader } from '@/components/ui/loader'
+import { usePdfStore } from '@/store/PdfStore'
 import { File } from '@prisma/client'
-import { useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
@@ -13,10 +13,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 export const PdfRenderer = ({ file }: { file: File }) => {
   const { ref, width, height } = useResizeDetector()
-  const [numPages, setNumPages] = useState(0)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [scale, setScale] = useState(1)
-  const [isLoading, setIsLoading] = useState(true)
+  const { numPages, currentPage, scale, isLoading, setNumPages, setIsLoading } =
+    usePdfStore()
 
   const onLoadSuccess = ({ numPages }: { numPages: number }) => {
     setIsLoading(false)
@@ -31,15 +29,7 @@ export const PdfRenderer = ({ file }: { file: File }) => {
         </div>
       )}
       <div className="flex h-full flex-col gap-1.5 overflow-hidden">
-        {!isLoading && (
-          <Topbar
-            file={file}
-            numPages={numPages}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            setScale={setScale}
-          />
-        )}
+        {!isLoading && <Topbar fileName={file.name} />}
         <div className="h-full overflow-hidden">
           <div ref={ref} className="flex h-full flex-col overflow-auto">
             <Document
@@ -47,14 +37,16 @@ export const PdfRenderer = ({ file }: { file: File }) => {
               onLoadSuccess={onLoadSuccess}
               loading={null}
             >
-              <Page
-                key={`page_${currentPage}`}
-                pageNumber={currentPage}
-                width={width}
-                height={height}
-                loading={null}
-                scale={scale}
-              />
+              {!isLoading && numPages && (
+                <Page
+                  key={`page_${currentPage}`}
+                  pageNumber={currentPage}
+                  width={width}
+                  height={height}
+                  loading={null}
+                  scale={scale}
+                />
+              )}
             </Document>
           </div>
         </div>

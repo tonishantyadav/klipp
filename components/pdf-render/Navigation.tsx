@@ -1,28 +1,20 @@
+'use client'
+
+import { usePdfStore } from '@/store/PdfStore'
 import { Button } from '@/components/ui/button'
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons'
-import { SetStateAction } from 'react'
 
-export const Navigation = ({
-  numPages,
-  currentPage,
-  setCurrentPage,
-}: {
-  numPages: number
-  currentPage: number
-  setCurrentPage: (currentPage: SetStateAction<number>) => void
-}) => {
+export const Navigation = () => {
+  const { numPages, currentPage, setCurrentPage } = usePdfStore()
+
   const goToPrevPage = () => {
-    setCurrentPage((prevPage) => {
-      const newPage = Math.max(prevPage - 1, 1)
-      return newPage
-    })
+    const newPage = Math.max(currentPage - 1, 1)
+    setCurrentPage(newPage)
   }
 
   const goToNextPage = () => {
-    setCurrentPage((prevPage) => {
-      const newPage = Math.min(prevPage + 1, numPages)
-      return newPage
-    })
+    const newPage = Math.min(currentPage + 1, numPages)
+    setCurrentPage(newPage)
   }
 
   return (

@@ -1,3 +1,6 @@
+'use client'
+
+import { usePdfStore } from '@/store/PdfStore'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -6,13 +9,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
-import { SetStateAction } from 'react'
 
-export const Scaling = ({
-  setScale,
-}: {
-  setScale: (scale: SetStateAction<number>) => void
-}) => {
+export const Scaling = () => {
+  const { setScale } = usePdfStore()
   return (
     <div>
       <DropdownMenu>
@@ -37,7 +36,6 @@ export const Scaling = ({
 }
 
 const scales: { label: string; value: number }[] = [
-  { label: '90%', value: 0.9 },
   { label: '100%', value: 1 },
   { label: '150%', value: 1.5 },
   { label: '200%', value: 2 },
