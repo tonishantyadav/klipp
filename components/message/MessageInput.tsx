@@ -4,7 +4,7 @@ import { Textarea } from '@/components/ui/textarea'
 export const MessageInput = () => {
   return (
     <div>
-      <Textarea />
+      <Textarea placeholder="What's in your mind?" />
     </div>
   )
 }
