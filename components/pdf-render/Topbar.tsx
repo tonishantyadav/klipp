@@ -21,7 +21,7 @@ export const Topbar = ({
   return (
     <div className="flex flex-col gap-1.5 border-b border-gray-300 p-2">
       <div className="flex justify-between">
-        <div className="flex items-center gap-1.5 pl-2.5">
+        <div className="hidden items-center gap-1.5 pl-2.5 md:inline-flex lg:inline-flex">
           <FileTextIcon className="text-blue-600" />
           <span className="text-sm text-zinc-700">
             {file.name.length > 64 ? `${file.name.slice(0, 64)}...` : file.name}

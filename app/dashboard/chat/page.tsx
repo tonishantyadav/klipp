@@ -16,11 +16,11 @@ const ChatPage = async ({
   return (
     <>
       <ToastContainer />
-      <div className="m-5 grid h-screen grid-cols-1 gap-5 rounded-lg p-5 md:grid-cols-[60%_40%] lg:grid-cols-[60%_40%]">
-        <div className="h-full overflow-hidden rounded-xl border-2 border-gray-300 bg-neutral-50/80 p-2 shadow-sm">
+      <div className="m-3 grid h-screen grid-cols-1 grid-rows-[60%_40%] gap-2.5 rounded-2xl p-2 md:grid-cols-[60%_40%] md:grid-rows-1 lg:grid-cols-[60%_40%] lg:grid-rows-1">
+        <div className="h-full overflow-hidden rounded-2xl border-2 border-gray-300">
           <FileContainer file={file} />
         </div>
-        <div className="h-full overflow-hidden rounded-xl border-2 border-gray-300 bg-neutral-50/80 p-2 shadow-sm">
+        <div className="h-full overflow-hidden rounded-2xl border-2 border-gray-300">
           <ChatContainer />
         </div>
       </div>
