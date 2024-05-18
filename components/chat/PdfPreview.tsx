@@ -11,7 +11,7 @@ import { useResizeDetector } from 'react-resize-detector'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
-export const PdfRenderer = ({ file }: { file: File }) => {
+export const PdfPreview = ({ file }: { file: File }) => {
   const { ref, width, height } = useResizeDetector()
   const { numPages, currentPage, scale, isLoading, setNumPages, setIsLoading } =
     usePdfStore()
@@ -29,7 +29,7 @@ export const PdfRenderer = ({ file }: { file: File }) => {
         </div>
       )}
       <div className="flex h-full flex-col gap-1.5 overflow-hidden">
-        {!isLoading && <Topbar fileName={file.name} />}
+        {/* {!isLoading && <Topbar fileName={file.name} />} */}
         <div className="h-full overflow-hidden">
           <div ref={ref} className="flex h-full flex-col overflow-auto">
             <Document

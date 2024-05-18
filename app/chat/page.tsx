@@ -1,4 +1,4 @@
-import { ChatContainer, FileContainer } from '@/components/chat'
+import { ChatContainer, PdfContainer, ChatSidebar } from '@/components/chat'
 import { Button } from '@/components/ui/button'
 import { OpenIcon } from '@/components/ui/icon'
 import ToastContainer from '@/components/ui/toast'
@@ -27,11 +27,14 @@ const ChatPage = async ({
             <OpenIcon className="h-4 w-4" />
           </Button>
         </div>
-        <div className="mb-5 grid h-screen grid-cols-1 grid-rows-2 gap-2.5 rounded-2xl p-2 md:grid-cols-2 md:grid-rows-1 lg:grid-cols-2 lg:grid-rows-1">
-          <div className="hidden h-full overflow-hidden rounded-2xl border-2 border-gray-300 md:inline-block lg:inline-block">
-            <FileContainer file={file} />
+        <div className="grid h-screen grid-cols-1 md:grid-cols-[60%_40%] md:grid-rows-1 lg:grid-cols-[15%_50%_35%] lg:grid-rows-1">
+          <div className="hidden lg:inline-block">
+            <ChatSidebar />
           </div>
-          <div className="h-screen overflow-hidden rounded-2xl border-2 border-gray-300 md:h-full lg:h-full">
+          <div className="hidden overflow-hidden border-2 border-gray-300 md:inline-block lg:inline-block">
+            <PdfContainer file={file} />
+          </div>
+          <div className="overflow-hidden border-2 border-gray-300 md:h-full lg:h-full">
             <ChatContainer message={message} />
           </div>
         </div>

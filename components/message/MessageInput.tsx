@@ -9,7 +9,7 @@ export const MessageInput = () => {
   const { isLoading } = usePdfStore()
 
   return (
-    <div className="relative">
+    <div className="relative mb-2">
       <Textarea
         rows={1}
         maxRows={4}
