@@ -18,7 +18,7 @@ export const RecentUploads = async () => {
   } catch (error) {}
 
   return (
-    <div className="flex h-96 flex-col gap-3 rounded-xl border-2 border-gray-300 p-3 shadow-sm">
+    <div className="flex h-96 flex-col gap-3 rounded-2xl border-2 bg-white p-3 shadow-sm">
       {isLoading ? (
         <div className="flex h-full flex-col items-center justify-center">
           <Loader />
@@ -35,11 +35,11 @@ export const RecentUploads = async () => {
 const FiledRecentUploads = ({ files }: { files: File[] }) => {
   return (
     <>
-      <div className="flex items-center gap-2 p-2 font-medium text-slate-700/90">
+      <div className="flex items-center gap-2 p-2 font-medium text-slate-800/90">
         <RocketIcon className="h-5 w-5" />
         <span className="text-2xl">Recent Uploads</span>
       </div>
-      <div className="hide-scrollbar overflow-y-auto">
+      <div className="overflow-y-auto">
         <Table>
           <TableBody>
             {files.map((file) => (
@@ -49,11 +49,13 @@ const FiledRecentUploads = ({ files }: { files: File[] }) => {
                     <div className="flex items-center gap-2">
                       <FileTextIcon className="text-blue-600" />
                       <Link
-                        className=" text-slate-700/90 group-hover:text-slate-900"
-                        href={`/dashboard/chat/?file=${file.id}`}
+                        className="text-xs text-slate-700/90 group-hover:text-slate-900 md:text-sm lg:text-sm"
+                        href={`/chat/?file=${file.id}`}
                         key={file.id}
                       >
-                        {file.name}
+                        {file.name.length > 32
+                          ? `${file.name.slice(0, 32)}...`
+                          : file.name}
                       </Link>
                     </div>
                     <div className="flex gap-2 opacity-0 group-hover:opacity-100">

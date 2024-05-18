@@ -20,7 +20,7 @@ const ChatPage = async ({
   return (
     <>
       <ToastContainer />
-      <div className="flex flex-col">
+      <div className="flex flex-col bg-white">
         <div className="inline-flex justify-end pr-3 md:hidden lg:hidden">
           <Button className="flex gap-1.5">
             <span>Open</span>

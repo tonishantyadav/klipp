@@ -4,6 +4,7 @@ import stackIcon from '@/public/stack-icon.svg'
 import { SignInButton, UserButton } from '@clerk/nextjs'
 import { auth } from '@clerk/nextjs/server'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
+import { headers } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -25,13 +26,13 @@ const Navbar = () => {
         <div className="m-2 flex items-center justify-center gap-3 p-2">
           <div className="flex">
             <Link
-              className="flex h-8 items-center rounded-sm font-medium  text-slate-800/80 hover:bg-primary hover:text-neutral-50"
+              className="flex h-8 items-center rounded-sm font-medium  text-gray-700/80 hover:bg-primary hover:text-white"
               href="/pricing"
             >
               <span className="p-2">Pricing</span>
             </Link>
             <Link
-              className="text-md flex h-8 items-center rounded-sm font-medium text-slate-800/80  hover:bg-primary hover:text-neutral-50"
+              className="text-md flex h-8 items-center rounded-sm font-medium text-gray-700/80  hover:bg-primary hover:text-white"
               href="/dashboard"
             >
               <span className="p-2">Dashboard</span>

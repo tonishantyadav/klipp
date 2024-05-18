@@ -18,12 +18,11 @@ export const FileDropzoneBody = ({
     >
       <input {...getInputProps()} />
       <UploadCloudIcon className="text-blue-600" />
-      <span className="text-xl font-medium">Drag and Drop</span>
+      <span className="text-xl font-medium">Drop a PDF file</span>
       <span>or</span>
       <Button className="my-2" onClick={open}>
         Browse
       </Button>
-      <span className="text-sm font-medium">Upload PDF upto 4mb</span>
     </div>
   )
 }
