@@ -13,27 +13,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum UploadStatus {
-  PENDING
-  PROCESSING
-  SUCCESS
-  FAILED
+enum Role {
+  USER
+  ASSISTANT
 }
 
 model User {
   id          String @id @default(cuid())
   email       String @unique
   clerkUserId String @unique
-  File        File[]
+  pdfs        Pdf[]
+  chats       Chat[]
 }
 
-model File {
-  id           String       @id @default(cuid())
-  name         String
-  url          String
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  uploadStatus UploadStatus @default(PENDING)
-  User         User?        @relation(fields: [userId], references: [id])
-  userId       String?
+model Pdf {
+  id        String   @id @default(cuid())
+  name      String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Chat {
+  id        String    @id @default(cuid())
+  pdfName   String
+  createdAt DateTime  @default(now())
+  userId    String
+  mesaages  Message[]
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  role      Role     @default(USER)
+  chatId    String
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
 }
