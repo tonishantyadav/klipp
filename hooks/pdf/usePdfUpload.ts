@@ -3,23 +3,22 @@
 import { useUploadThing } from '@/lib/uploadthing'
 import { usePdfUploadStore } from '@/store/PdfUploadStore'
 import { checkFileSize } from '@/utils/CheckFileSize'
-import { useRouter } from 'next/navigation'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { toast } from 'react-toastify'
 import { UploadThingError } from 'uploadthing/server'
+import { useChatCreate } from '@/hooks/chat'
 
 export const usePdfUpload = () => {
-  const router = useRouter()
   const { setFile, setIsUploading, setIsUploadingDone, setUploadProgress } =
     usePdfUploadStore()
 
-  const [i, setI] = useState()
+  const chatCreate = useChatCreate()
 
   const { startUpload } = useUploadThing('fileUploader', {
-    onClientUploadComplete: (res) => {
+    onClientUploadComplete: async (res) => {
       setIsUploading(false)
       setIsUploadingDone(true)
-      router.push('/chat')
+      await chatCreate.mutateAsync(res[0].key)
     },
     onUploadError: () => {
       setFile(null)

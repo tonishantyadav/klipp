@@ -42,33 +42,45 @@ const FiledRecentUploads = ({ pdfs }: { pdfs: Pdf[] }) => {
       <div className="overflow-y-auto">
         <Table>
           <TableBody>
-            {pdfs.map((pdf) => (
-              <TableRow key={pdf.id}>
-                <TableCell className="group cursor-pointer">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <FileTextIcon className="text-blue-600" />
-                      <Link
-                        className="text-xs text-slate-700/90 group-hover:text-slate-900 md:text-sm lg:text-sm"
-                        href={`/chat/?pdf=${pdf.id}`}
-                        key={pdf.id}
-                      >
-                        {pdf.name.length > 32
-                          ? `${pdf.name.slice(0, 32)}...`
-                          : pdf.name}
-                      </Link>
-                    </div>
-                    <div className="flex gap-2 opacity-0 group-hover:opacity-100">
-                      <PdfUpdateDialog pdf={pdf} />
-                      <PdfDeleteDialog pdf={pdf} />
-                    </div>
-                  </div>
-                </TableCell>
-              </TableRow>
+            {pdfs.map((pdf, index) => (
+              <FiledRecentUploadsRow pdf={pdf} key={index} />
             ))}
           </TableBody>
         </Table>
       </div>
+    </>
+  )
+}
+
+const FiledRecentUploadsRow = async ({ pdf }: { pdf: Pdf }) => {
+  const chat = await prisma.chat.findUnique({ where: { pdfId: pdf.id } })
+
+  return (
+    <>
+      {chat && (
+        <TableRow key={pdf.id}>
+          <TableCell className="group cursor-pointer">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <FileTextIcon className="text-blue-600" />
+                <Link
+                  className="text-xs text-slate-700/90 group-hover:text-slate-900 md:text-sm lg:text-sm"
+                  href={`/chats/${chat.id}`}
+                  key={pdf.id}
+                >
+                  {pdf.name.length > 48
+                    ? `${pdf.name.slice(0, 48)}...`
+                    : pdf.name}
+                </Link>
+              </div>
+              <div className="flex gap-2 opacity-0 group-hover:opacity-100">
+                <PdfUpdateDialog pdf={pdf} />
+                <PdfDeleteDialog pdf={pdf} />
+              </div>
+            </div>
+          </TableCell>
+        </TableRow>
+      )}
     </>
   )
 }

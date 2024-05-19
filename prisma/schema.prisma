@@ -34,14 +34,16 @@ model Pdf {
   updatedAt DateTime @updatedAt
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Chat      Chat?
 }
 
 model Chat {
   id        String    @id @default(cuid())
-  pdfName   String
   createdAt DateTime  @default(now())
   userId    String
+  pdfId     String    @unique
   mesaages  Message[]
+  pdf       Pdf       @relation(fields: [pdfId], references: [id])
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

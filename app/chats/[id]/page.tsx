@@ -6,17 +6,12 @@ import ToastContainer from '@/components/ui/toast'
 import prisma from '@/prisma/client'
 import { notFound } from 'next/navigation'
 
-const ChatPage = async ({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string }
-}) => {
-  const pdf = await prisma.pdf.findUnique({
-    where: { id: searchParams?.file },
-  })
-  if (!pdf) notFound()
+const ChatPage = async ({ params }: { params: { id: string } }) => {
+  const chat = await prisma.chat.findUnique({ where: { id: params.id } })
+  if (!chat) notFound()
 
-  const message = ''
+  const pdf = await prisma.pdf.findUnique({ where: { id: chat.pdfId } })
+  if (!pdf) notFound()
 
   return (
     <>
@@ -36,7 +31,7 @@ const ChatPage = async ({
             <PdfContainer pdf={pdf} />
           </div>
           <div className="overflow-hidden border-2 border-gray-300 md:h-full lg:h-full">
-            <ChatContainer message={message} />
+            <ChatContainer message="" />
           </div>
         </div>
       </div>

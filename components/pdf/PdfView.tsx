@@ -1,8 +1,10 @@
 'use client'
 
 import { Loader } from '@/components/ui/loader'
+import { usePdfUploadStore } from '@/store/PdfUploadStore'
 import { usePdfViewStore } from '@/store/PdfViewStore'
 import { Pdf } from '@prisma/client'
+import { useEffect } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
@@ -12,8 +14,18 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 export const PdfView = ({ pdf }: { pdf: Pdf }) => {
   const { ref, width, height } = useResizeDetector()
+  const { file, isUploadingDone, setFile, setIsUploadingDone } =
+    usePdfUploadStore()
   const { numPages, currentPage, scale, isLoading, setNumPages, setIsLoading } =
     usePdfViewStore()
+
+  useEffect(() => {
+    if (file && isUploadingDone) {
+      setFile(null)
+      setIsUploadingDone(false)
+    }
+    // eslint-disable-next-line
+  }, [])
 
   const onLoadSuccess = ({ numPages }: { numPages: number }) => {
     setIsLoading(false)
