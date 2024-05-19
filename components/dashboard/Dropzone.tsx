@@ -1,5 +1,4 @@
-import { FileDropzone } from '@/components/file'
-import { FileTextIcon } from '@radix-ui/react-icons'
+import { PdfDropzone } from '@/components/pdf'
 import { Cloud } from 'lucide-react'
 
 export const Dropzone = () => {
@@ -9,7 +8,7 @@ export const Dropzone = () => {
         <Cloud />
         <span className="text-2xl">Upload PDF</span>
       </div>{' '}
-      <FileDropzone />
+      <PdfDropzone />
     </div>
   )
 }

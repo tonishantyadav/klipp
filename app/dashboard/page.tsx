@@ -1,4 +1,3 @@
-import Container from '@/components/Container'
 import { Dropzone, RecentUploads } from '@/components/dashboard'
 import { DashboardIcon, LineChartIcon } from '@/components/ui/icon'
 import { Loader } from '@/components/ui/loader'
@@ -6,7 +5,6 @@ import { SearchBar } from '@/components/ui/search-bar'
 import ToastContainer from '@/components/ui/toast'
 import { currentMonthYear } from '@/utils/CurrentMonthYear'
 import dynamic from 'next/dynamic'
-import { headers } from 'next/headers'
 
 const MonthlyUploadsGraph = dynamic(
   () =>

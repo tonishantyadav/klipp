@@ -1,7 +1,7 @@
-import { File } from '@prisma/client'
+import { Pdf } from '@prisma/client'
 
 // Function to calculate the number of file uploads for each day in the current month
-export const calculateUploadsPerDay = (files: File[]) => {
+export const calculateUploadsPerDay = (pdfs: Pdf[]) => {
   const currentDate = new Date()
   const currentMonth = currentDate.getMonth()
   const daysInMonth = new Date(
@@ -14,8 +14,8 @@ export const calculateUploadsPerDay = (files: File[]) => {
   const uploadsPerDay = Array(daysInMonth).fill(0)
 
   // Loop through each file and increment the count for the corresponding day
-  files.forEach((file) => {
-    const uploadDate = new Date(file.createdAt)
+  pdfs.forEach((pdf) => {
+    const uploadDate = new Date(pdf.createdAt)
     if (uploadDate.getMonth() === currentMonth) {
       const dayOfMonth = uploadDate.getDate()
       uploadsPerDay[dayOfMonth - 1]++ // Subtract 1 because JavaScript Date uses 0-based index for months

@@ -10,18 +10,18 @@ export async function GET(request: NextRequest) {
       const user = await prisma.user.findUnique({
         where: { clerkUserId },
       })
-      const files = await prisma.file.findMany({
+      const pdfs = await prisma.pdf.findMany({
         where: { userId: user!.id },
         orderBy: {
           createdAt: 'desc',
         },
       })
-      return NextResponse.json(files)
+      return NextResponse.json(pdfs)
     }
   } catch (error) {
     return NextResponse.json(
       {
-        error: 'Unable to fetch the uploaded files at the moment!',
+        error: 'Unable to fetch the uploaded PDFs at the moment!',
       },
       { status: 500 }
     )

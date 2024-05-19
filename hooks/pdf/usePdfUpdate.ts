@@ -1,26 +1,26 @@
 import { handleError } from '@/lib/error'
-import { File } from '@prisma/client'
+import { Pdf } from '@prisma/client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-export const useFileUpdate = () => {
+export const usePdfUpdate = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: async ({ id, name }: { id: string; name: string }) =>
-      await axios.patch(`/api/files/${id}`, { name }),
+      await axios.patch(`/api/pdfs/${id}`, { name }),
     onMutate: async ({ id, name }: { id: string; name: string }) => {
-      const files = queryClient.getQueryData<File[]>(['files'])
-      if (files) {
-        queryClient.setQueryData(['files'], () =>
-          files.map((file) => (file.id === id ? { ...file, name } : file))
+      const pdfs = queryClient.getQueryData<Pdf[]>(['pdfs'])
+      if (pdfs) {
+        queryClient.setQueryData(['pdfs'], () =>
+          pdfs.map((pdf) => (pdf.id === id ? { ...pdf, name } : pdf))
         )
       }
-      return { files }
+      return { pdfs }
     },
     onError: (error, _, context) => {
-      queryClient.setQueryData(['files'], context?.files || [])
+      queryClient.setQueryData(['pdfs'], context?.pdfs || [])
       const errorMessage = handleError(error)
       toast.error(errorMessage)
     },

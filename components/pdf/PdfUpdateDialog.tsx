@@ -11,14 +11,14 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Input } from '@/components/ui/input'
-import { useFileUpdate } from '@/hooks/file'
-import { File } from '@prisma/client'
+import { usePdfUpdate } from '@/hooks/pdf'
+import { Pdf } from '@prisma/client'
 import { Pencil2Icon } from '@radix-ui/react-icons'
 import { ChangeEvent, useState } from 'react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-export const FileUpdateDialog = ({ file }: { file: File }) => {
-  const fileUpdate = useFileUpdate()
+export const PdfUpdateDialog = ({ pdf }: { pdf: Pdf }) => {
+  const pdfUpdate = usePdfUpdate()
   const [fileName, setFileName] = useState('')
 
   return (
@@ -27,7 +27,7 @@ export const FileUpdateDialog = ({ file }: { file: File }) => {
         <Pencil2Icon className="text-primary" />
       </AlertDialogTrigger>
       <AlertDialogContent className="w-80 rounded-lg md:w-full lg:w-full">
-        <div className="flex flex-col gap-2 justify-start">
+        <div className="flex flex-col justify-start gap-2">
           <AlertDialogTitle>Edit your file name</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently update your file
@@ -35,7 +35,7 @@ export const FileUpdateDialog = ({ file }: { file: File }) => {
           </AlertDialogDescription>
         </div>
         <Input
-          placeholder={file.name}
+          placeholder={pdf.name}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setFileName(e.target.value)
           }
@@ -46,10 +46,10 @@ export const FileUpdateDialog = ({ file }: { file: File }) => {
             className="mt-2"
             disabled={!fileName}
             onClick={() =>
-              fileUpdate.mutateAsync({ id: file.id, name: fileName })
+              pdfUpdate.mutateAsync({ id: pdf.id, name: fileName })
             }
           >
-            {fileUpdate.isPending ? (
+            {pdfUpdate.isPending ? (
               <BeatLoader size={5} color="white" />
             ) : (
               'Continue'

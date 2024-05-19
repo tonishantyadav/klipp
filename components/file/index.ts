@@ -1,5 +1,0 @@
-export { FileDeleteDialog } from './FileDeleteDialog'
-export { FileDropzone } from './FileDropzone'
-export { FileDropzoneBody } from './FileDropzoneBody'
-export { FileUpdateDialog } from './FileUpdateDialog'
-export { ShowUploadedFile } from './ShowUploadedFile'

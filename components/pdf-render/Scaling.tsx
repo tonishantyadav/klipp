@@ -1,6 +1,5 @@
 'use client'
 
-import { usePdfStore } from '@/store/PdfStore'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -8,10 +7,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { usePdfViewStore } from '@/store/PdfViewStore'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 
 export const Scaling = () => {
-  const { setScale } = usePdfStore()
+  const { setScale } = usePdfViewStore()
   return (
     <div>
       <DropdownMenu>

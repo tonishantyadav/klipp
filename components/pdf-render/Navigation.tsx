@@ -1,11 +1,11 @@
 'use client'
 
-import { usePdfStore } from '@/store/PdfStore'
 import { Button } from '@/components/ui/button'
+import { usePdfViewStore } from '@/store/PdfViewStore'
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons'
 
 export const Navigation = () => {
-  const { numPages, currentPage, setCurrentPage } = usePdfStore()
+  const { numPages, currentPage, setCurrentPage } = usePdfViewStore()
 
   const goToPrevPage = () => {
     const newPage = Math.max(currentPage - 1, 1)

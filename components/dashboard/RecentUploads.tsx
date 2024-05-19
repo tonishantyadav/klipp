@@ -1,19 +1,19 @@
-import { FileDeleteDialog, FileUpdateDialog } from '@/components/file'
+import { PdfDeleteDialog, PdfUpdateDialog } from '@/components/pdf'
 import { FireIcon } from '@/components/ui/icon'
 import { Loader } from '@/components/ui/loader'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import prisma from '@/prisma/client'
-import { File } from '@prisma/client'
+import { Pdf } from '@prisma/client'
 import { FileTextIcon, RocketIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 
 export const RecentUploads = async () => {
-  let files: File[] = []
+  let pdfs: Pdf[] = []
   let isLoading = false
 
   try {
     isLoading = true
-    files = await prisma.file.findMany()
+    pdfs = await prisma.pdf.findMany()
     isLoading = false
   } catch (error) {}
 
@@ -23,8 +23,8 @@ export const RecentUploads = async () => {
         <div className="flex h-full flex-col items-center justify-center">
           <Loader />
         </div>
-      ) : files && files.length ? (
-        <FiledRecentUploads files={files} />
+      ) : pdfs && pdfs.length ? (
+        <FiledRecentUploads pdfs={pdfs} />
       ) : (
         <EmptyRecentUploads />
       )}
@@ -32,7 +32,7 @@ export const RecentUploads = async () => {
   )
 }
 
-const FiledRecentUploads = ({ files }: { files: File[] }) => {
+const FiledRecentUploads = ({ pdfs }: { pdfs: Pdf[] }) => {
   return (
     <>
       <div className="flex items-center gap-2 p-2 font-medium text-slate-800/90">
@@ -42,25 +42,25 @@ const FiledRecentUploads = ({ files }: { files: File[] }) => {
       <div className="overflow-y-auto">
         <Table>
           <TableBody>
-            {files.map((file) => (
-              <TableRow key={file.id}>
+            {pdfs.map((pdf) => (
+              <TableRow key={pdf.id}>
                 <TableCell className="group cursor-pointer">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <FileTextIcon className="text-blue-600" />
                       <Link
                         className="text-xs text-slate-700/90 group-hover:text-slate-900 md:text-sm lg:text-sm"
-                        href={`/chat/?file=${file.id}`}
-                        key={file.id}
+                        href={`/chat/?pdf=${pdf.id}`}
+                        key={pdf.id}
                       >
-                        {file.name.length > 32
-                          ? `${file.name.slice(0, 32)}...`
-                          : file.name}
+                        {pdf.name.length > 32
+                          ? `${pdf.name.slice(0, 32)}...`
+                          : pdf.name}
                       </Link>
                     </div>
                     <div className="flex gap-2 opacity-0 group-hover:opacity-100">
-                      <FileUpdateDialog file={file} />
-                      <FileDeleteDialog file={file} />
+                      <PdfUpdateDialog pdf={pdf} />
+                      <PdfDeleteDialog pdf={pdf} />
                     </div>
                   </div>
                 </TableCell>

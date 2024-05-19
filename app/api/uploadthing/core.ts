@@ -24,12 +24,11 @@ export const ourFileRouter = {
           where: { clerkUserId },
         })
         if (user) {
-          await prisma.file.create({
+          await prisma.pdf.create({
             data: {
               id: file.key,
               name: file.name,
               url: file.url,
-              uploadStatus: 'PROCESSING',
               userId: user.id,
             },
           })

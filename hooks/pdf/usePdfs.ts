@@ -1,12 +1,12 @@
-import { File } from '@prisma/client'
+import { Pdf } from '@prisma/client'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
-export const useFiles = () => {
+export const usePdfs = () => {
   return useQuery({
-    queryKey: ['files'],
+    queryKey: ['pdfs'],
     queryFn: async () => {
-      const response = await axios.get<File[]>('/api/files')
+      const response = await axios.get<Pdf[]>('/api/pdfs')
       return response.data
     },
   })

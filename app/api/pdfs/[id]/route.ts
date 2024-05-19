@@ -7,15 +7,15 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   const { id } = params
-  const file = await prisma.file.findUnique({ where: { id } })
+  const pdf = await prisma.pdf.findUnique({ where: { id } })
 
-  if (!file)
-    return NextResponse.json({ error: 'File not found!' }, { status: 404 })
+  if (!pdf)
+    return NextResponse.json({ error: 'PDF not found!' }, { status: 404 })
 
   try {
-    await prisma.file.delete({ where: { id } })
+    await prisma.pdf.delete({ where: { id } })
     return NextResponse.json(
-      { success: 'Your file is been deleted.' },
+      { success: 'Your PDF is been deleted.' },
       { status: 200 }
     )
   } catch (error) {
@@ -43,15 +43,15 @@ export async function PATCH(
 
   const { name } = validation.data
 
-  const file = await prisma.file.findUnique({ where: { id } })
+  const pdf = await prisma.pdf.findUnique({ where: { id } })
 
-  if (!file)
-    return NextResponse.json({ error: 'File not found!' }, { status: 404 })
+  if (!pdf)
+    return NextResponse.json({ error: 'PDF not found!' }, { status: 404 })
 
   try {
-    await prisma.file.update({ where: { id }, data: { name } })
+    await prisma.pdf.update({ where: { id }, data: { name } })
     return NextResponse.json(
-      { success: 'Your file name is been updated.' },
+      { success: 'Your PDF name is been updated.' },
       { status: 200 }
     )
   } catch (error) {

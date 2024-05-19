@@ -1,4 +1,5 @@
-import { ChatContainer, PdfContainer, ChatSidebar } from '@/components/chat'
+import { ChatContainer, ChatSidebar } from '@/components/chat'
+import { PdfContainer } from '@/components/pdf'
 import { Button } from '@/components/ui/button'
 import { OpenIcon } from '@/components/ui/icon'
 import ToastContainer from '@/components/ui/toast'
@@ -10,10 +11,10 @@ const ChatPage = async ({
 }: {
   searchParams?: { [key: string]: string }
 }) => {
-  const file = await prisma.file.findUnique({
+  const pdf = await prisma.pdf.findUnique({
     where: { id: searchParams?.file },
   })
-  if (!file) notFound()
+  if (!pdf) notFound()
 
   const message = ''
 
@@ -32,7 +33,7 @@ const ChatPage = async ({
             <ChatSidebar />
           </div>
           <div className="hidden overflow-hidden border-2 border-gray-300 md:inline-block lg:inline-block">
-            <PdfContainer file={file} />
+            <PdfContainer pdf={pdf} />
           </div>
           <div className="overflow-hidden border-2 border-gray-300 md:h-full lg:h-full">
             <ChatContainer message={message} />

@@ -10,13 +10,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import { useFileDelete } from '@/hooks/file'
-import { File } from '@prisma/client'
+import { usePdfDelete } from '@/hooks/pdf'
+import { Pdf } from '@prisma/client'
 import { TrashIcon } from '@radix-ui/react-icons'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-export const FileDeleteDialog = ({ file }: { file: File }) => {
-  const deleteFile = useFileDelete()
+export const PdfDeleteDialog = ({ pdf }: { pdf: Pdf }) => {
+  const deletePdf = usePdfDelete()
 
   return (
     <AlertDialog>
@@ -35,9 +35,9 @@ export const FileDeleteDialog = ({ file }: { file: File }) => {
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             className="mt-2"
-            onClick={() => deleteFile.mutateAsync(file.id)}
+            onClick={() => deletePdf.mutateAsync(pdf.id)}
           >
-            {deleteFile.isPending ? (
+            {deletePdf.isPending ? (
               <BeatLoader size={5} color="white" />
             ) : (
               'Continue'

@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-interface PdfState {
+interface PdfViewState {
   numPages: number
   currentPage: number
   scale: number
@@ -11,7 +11,7 @@ interface PdfState {
   setIsLoading: (isLoading: boolean) => void
 }
 
-export const usePdfStore = create<PdfState>((set) => ({
+export const usePdfViewStore = create<PdfViewState>((set) => ({
   numPages: 0,
   currentPage: 1,
   scale: 1,

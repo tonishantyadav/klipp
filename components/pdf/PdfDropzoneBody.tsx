@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { UploadCloudIcon } from '@/components/ui/icon'
 import { DropzoneInputProps, DropzoneRootProps } from 'react-dropzone'
 
-export const FileDropzoneBody = ({
+export const PdfDropzoneBody = ({
   open,
   getRootProps,
   getInputProps,

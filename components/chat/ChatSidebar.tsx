@@ -1,7 +1,7 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
 import { CirclePlus, Home, LayoutDashboard } from 'lucide-react'
-import { Button } from '../ui/button'
 import { useRouter } from 'next/navigation'
 
 export const ChatSidebar = () => {

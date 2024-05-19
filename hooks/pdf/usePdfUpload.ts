@@ -1,24 +1,24 @@
 'use client'
 
 import { useUploadThing } from '@/lib/uploadthing'
+import { usePdfUploadStore } from '@/store/PdfUploadStore'
 import { checkFileSize } from '@/utils/CheckFileSize'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 import { toast } from 'react-toastify'
 import { UploadThingError } from 'uploadthing/server'
 
-export const useFileOnDrop = () => {
+export const usePdfUpload = () => {
   const router = useRouter()
+  const { setFile, setIsUploading, setIsUploadingDone, setUploadProgress } =
+    usePdfUploadStore()
 
-  const [file, setFile] = useState<File | null>(null)
-  const [isUploading, setIsUploading] = useState(false)
-  const [isUploadDone, setIsUploadDone] = useState(false)
-  const [uploadProgress, setUploadProgress] = useState(0)
+  const [i, setI] = useState()
 
   const { startUpload } = useUploadThing('fileUploader', {
     onClientUploadComplete: (res) => {
-      setIsUploadDone(true)
       setIsUploading(false)
+      setIsUploadingDone(true)
       router.push('/chat')
     },
     onUploadError: () => {
@@ -29,7 +29,7 @@ export const useFileOnDrop = () => {
 
   const onUploadProgress = () => {
     const interval = setInterval(() => {
-      setUploadProgress((progress) => {
+      setUploadProgress((progress: number) => {
         if (progress >= 90) {
           clearInterval(interval)
           return progress
@@ -57,5 +57,5 @@ export const useFileOnDrop = () => {
     // eslint-disable-next-line
   }, [])
 
-  return { onDrop, isUploading, uploadProgress, file, isUploadDone }
+  return { onDrop }
 }

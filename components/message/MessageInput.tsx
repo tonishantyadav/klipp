@@ -3,10 +3,10 @@
 import { Button } from '@/components/ui/button'
 import { SendIcon } from '@/components/ui/icon'
 import { Textarea } from '@/components/ui/textarea'
-import { usePdfStore } from '@/store/PdfStore'
+import { usePdfViewStore } from '@/store/PdfViewStore'
 
 export const MessageInput = () => {
-  const { isLoading } = usePdfStore()
+  const { isLoading } = usePdfViewStore()
 
   return (
     <div className="relative mb-2">
