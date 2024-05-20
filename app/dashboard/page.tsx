@@ -46,7 +46,7 @@ const DashboardPage = () => {
           <SearchBar />
         </div>
         <div className="mx-2 grid gap-5 md:mx-10 lg:mx-10">
-          <div className="hide-scrollbar grid gap-5 md:grid-cols-2 lg:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-2">
             <RecentUploads />
             <Dropzone />
           </div>

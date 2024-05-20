@@ -49,7 +49,10 @@ export const PdfView = ({ pdf }: { pdf: Pdf }) => {
       )}
       <div className="flex h-full flex-col gap-1.5 overflow-hidden">
         <div className="h-full overflow-hidden">
-          <div ref={ref} className="flex h-full flex-col overflow-auto">
+          <div
+            ref={ref}
+            className="scrollbar flex h-full flex-col overflow-auto"
+          >
             <Document
               file={pdf.url}
               onLoadSuccess={onLoadSuccess}

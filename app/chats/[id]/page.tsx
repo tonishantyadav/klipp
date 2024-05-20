@@ -23,14 +23,14 @@ const ChatPage = async ({ params }: { params: { id: string } }) => {
             <OpenIcon className="h-4 w-4" />
           </Button>
         </div>
-        <div className="grid h-screen grid-cols-1 md:grid-cols-[60%_40%] md:grid-rows-1 lg:grid-cols-[15%_50%_35%] lg:grid-rows-1">
+        <div className="grid h-screen grid-cols-1 md:grid-cols-[60%_40%] md:grid-rows-1 lg:grid-cols-[20%_45%_35%] lg:grid-rows-1">
           <div className="hidden lg:inline-block">
-            <ChatSidebar />
+            <ChatSidebar pdf={pdf} />
           </div>
-          <div className="hidden overflow-hidden border-2 border-gray-300 md:inline-block lg:inline-block">
+          <div className="hidden overflow-hidden border border-gray-300 md:inline-block lg:inline-block">
             <PdfContainer pdf={pdf} />
           </div>
-          <div className="overflow-hidden border-2 border-gray-300 md:h-full lg:h-full">
+          <div className="overflow-hidden md:h-full lg:h-full">
             <ChatContainer message="" />
           </div>
         </div>
