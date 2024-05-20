@@ -5,7 +5,7 @@ import { usePdfUploadStore } from '@/store/PdfUploadStore'
 import { usePdfViewStore } from '@/store/PdfViewStore'
 import { Pdf } from '@prisma/client'
 import { useQueryClient } from '@tanstack/react-query'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
@@ -16,15 +16,9 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 export const PdfView = ({ pdf }: { pdf: Pdf }) => {
   const queryClient = useQueryClient()
   const { ref, width, height } = useResizeDetector()
-  const {
-    file,
-    isUploadingDone,
-    setFile,
-    setIsUploadingDone,
-    setUploadProgress,
-  } = usePdfUploadStore()
-  const { numPages, currentPage, scale, isLoading, setNumPages, setIsLoading } =
-    usePdfViewStore()
+  const { setFile, setIsUploadingDone, setUploadProgress } = usePdfUploadStore()
+  const { numPages, currentPage, scale, setNumPages } = usePdfViewStore()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     setFile(null)

@@ -15,7 +15,7 @@ export const usePdfViewStore = create<PdfViewState>((set) => ({
   numPages: 0,
   currentPage: 1,
   scale: 1,
-  isLoading: true,
+  isLoading: false,
   setNumPages: (numPages) => set({ numPages }),
   setCurrentPage: (currentPage) => set({ currentPage }),
   setScale: (scale) => set({ scale }),
