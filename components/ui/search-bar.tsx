@@ -19,6 +19,7 @@ export const SearchBar = () => {
       placeholder="Search"
       items={pdfs!}
       onSelect={onSelect}
+      maxResults={5}
       styling={{
         border: '1px solid #9ca3af',
         color: '#1e293b',

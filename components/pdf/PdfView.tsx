@@ -4,6 +4,7 @@ import { Loader } from '@/components/ui/loader'
 import { usePdfUploadStore } from '@/store/PdfUploadStore'
 import { usePdfViewStore } from '@/store/PdfViewStore'
 import { Pdf } from '@prisma/client'
+import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
@@ -13,17 +14,24 @@ import { useResizeDetector } from 'react-resize-detector'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 export const PdfView = ({ pdf }: { pdf: Pdf }) => {
+  const queryClient = useQueryClient()
   const { ref, width, height } = useResizeDetector()
-  const { file, isUploadingDone, setFile, setIsUploadingDone } =
-    usePdfUploadStore()
+  const {
+    file,
+    isUploadingDone,
+    setFile,
+    setIsUploadingDone,
+    setUploadProgress,
+  } = usePdfUploadStore()
   const { numPages, currentPage, scale, isLoading, setNumPages, setIsLoading } =
     usePdfViewStore()
 
   useEffect(() => {
-    if (file && isUploadingDone) {
-      setFile(null)
-      setIsUploadingDone(false)
-    }
+    setFile(null)
+    setIsUploadingDone(false)
+    setUploadProgress(0)
+    queryClient.invalidateQueries({ queryKey: ['pdfs'] })
+    queryClient.invalidateQueries({ queryKey: ['chats'] })
     // eslint-disable-next-line
   }, [])
 

@@ -1,21 +1,20 @@
-'use client'
-
+import { useChatCreate } from '@/hooks/chat'
 import { useUploadThing } from '@/lib/uploadthing'
 import { usePdfUploadStore } from '@/store/PdfUploadStore'
 import { checkFileSize } from '@/utils/CheckFileSize'
+import { useQueryClient } from '@tanstack/react-query'
 import { useCallback } from 'react'
 import { toast } from 'react-toastify'
 import { UploadThingError } from 'uploadthing/server'
-import { useChatCreate } from '@/hooks/chat'
 
 export const usePdfUpload = () => {
+  const chatCreate = useChatCreate()
   const { setFile, setIsUploading, setIsUploadingDone, setUploadProgress } =
     usePdfUploadStore()
 
-  const chatCreate = useChatCreate()
-
   const { startUpload } = useUploadThing('fileUploader', {
     onClientUploadComplete: async (res) => {
+      console.log('uploading complete')
       setIsUploading(false)
       setIsUploadingDone(true)
       await chatCreate.mutateAsync(res[0].key)
@@ -47,7 +46,7 @@ export const usePdfUpload = () => {
       if (acceptedFiles[0] && checkFileSize(acceptedFiles[0].size))
         throw new UploadThingError('File size exceed.')
 
-      const response = await startUpload(acceptedFiles)
+      await startUpload(acceptedFiles)
       setUploadProgress(100)
     } catch (error: any) {
       setFile(null)

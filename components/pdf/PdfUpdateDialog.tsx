@@ -27,13 +27,11 @@ export const PdfUpdateDialog = ({ pdf }: { pdf: Pdf }) => {
         <Pencil2Icon className="text-primary" />
       </AlertDialogTrigger>
       <AlertDialogContent className="w-80 rounded-lg md:w-full lg:w-full">
-        <div className="flex flex-col justify-start gap-2">
-          <AlertDialogTitle>Edit your file name</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently update your file
-            name and remove the old file name from our servers.
-          </AlertDialogDescription>
-        </div>
+        <AlertDialogTitle>Edit your file name</AlertDialogTitle>
+        <AlertDialogDescription>
+          This action cannot be undone. This will permanently update your file
+          name and remove the old file name from our servers.
+        </AlertDialogDescription>
         <Input
           placeholder={pdf.name}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -43,7 +41,6 @@ export const PdfUpdateDialog = ({ pdf }: { pdf: Pdf }) => {
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
-            className="mt-2"
             disabled={!fileName}
             onClick={() =>
               pdfUpdate.mutateAsync({ id: pdf.id, name: fileName })

@@ -1,10 +1,18 @@
 import { Dropzone, RecentUploads } from '@/components/dashboard'
 import { DashboardIcon, LineChartIcon } from '@/components/ui/icon'
 import { Loader } from '@/components/ui/loader'
-import { SearchBar } from '@/components/ui/search-bar'
+import SearchBarSkeleton from '@/components/ui/search-bar-skeleton'
 import ToastContainer from '@/components/ui/toast'
 import { currentMonthYear } from '@/utils/CurrentMonthYear'
 import dynamic from 'next/dynamic'
+
+const SearchBar = dynamic(
+  () => import('@/components/ui/search-bar').then((mod) => mod.SearchBar),
+  {
+    loading: () => <SearchBarSkeleton />,
+    ssr: false,
+  }
+)
 
 const MonthlyUploadsGraph = dynamic(
   () =>
@@ -38,7 +46,7 @@ const DashboardPage = () => {
           <SearchBar />
         </div>
         <div className="mx-2 grid gap-5 md:mx-10 lg:mx-10">
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-2">
+          <div className="hide-scrollbar grid gap-5 md:grid-cols-2 lg:grid-cols-2">
             <RecentUploads />
             <Dropzone />
           </div>

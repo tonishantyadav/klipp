@@ -4,10 +4,12 @@ import { handleError } from '@/lib/error'
 import { Pdf } from '@prisma/client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 
 export const usePdfDelete = () => {
   const queryClient = useQueryClient()
+  const router = useRouter()
 
   return useMutation({
     mutationFn: async (id: string) => await axios.delete(`/api/pdfs/${id}`),
@@ -21,6 +23,7 @@ export const usePdfDelete = () => {
       }
       return { pdfs }
     },
+    onSuccess: () => router.refresh(),
     onError: (error, _, context) => {
       queryClient.setQueryData(['pdfs'], context?.pdfs || [])
       const errorMessage = handleError(error)

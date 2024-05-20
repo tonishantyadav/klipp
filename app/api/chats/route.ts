@@ -3,6 +3,29 @@ import { auth } from '@clerk/nextjs/server'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
+export async function GET(request: NextRequest) {
+  const { userId: clerkUserId } = auth()
+
+  try {
+    if (clerkUserId) {
+      const user = await prisma.user.findUnique({
+        where: { clerkUserId },
+      })
+      const chats = await prisma.chat.findMany({
+        where: { userId: user!.id },
+      })
+      return NextResponse.json(chats)
+    }
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: 'Unable to fetch the chats at the moment!',
+      },
+      { status: 500 }
+    )
+  }
+}
+
 export async function POST(request: NextRequest) {
   const body = await request.json()
   const validation = z

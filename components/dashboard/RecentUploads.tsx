@@ -1,21 +1,19 @@
+'use client'
+
 import { PdfDeleteDialog, PdfUpdateDialog } from '@/components/pdf'
 import { FireIcon } from '@/components/ui/icon'
 import { Loader } from '@/components/ui/loader'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
-import prisma from '@/prisma/client'
-import { Pdf } from '@prisma/client'
+import { useChats } from '@/hooks/chat'
+import { usePdfs } from '@/hooks/pdf'
+import { Chat, Pdf } from '@prisma/client'
 import { FileTextIcon, RocketIcon } from '@radix-ui/react-icons'
+import { useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
-export const RecentUploads = async () => {
-  let pdfs: Pdf[] = []
-  let isLoading = false
-
-  try {
-    isLoading = true
-    pdfs = await prisma.pdf.findMany()
-    isLoading = false
-  } catch (error) {}
+export const RecentUploads = () => {
+  const { data: pdfs, isLoading, isError } = usePdfs()
 
   return (
     <div className="flex h-96 flex-col gap-3 rounded-2xl border-2 bg-white p-3 shadow-sm">
@@ -23,7 +21,7 @@ export const RecentUploads = async () => {
         <div className="flex h-full flex-col items-center justify-center">
           <Loader />
         </div>
-      ) : pdfs && pdfs.length ? (
+      ) : !isLoading && pdfs && pdfs.length ? (
         <FiledRecentUploads pdfs={pdfs} />
       ) : (
         <EmptyRecentUploads />
@@ -39,7 +37,7 @@ const FiledRecentUploads = ({ pdfs }: { pdfs: Pdf[] }) => {
         <RocketIcon className="h-5 w-5" />
         <span className="text-2xl">Recent Uploads</span>
       </div>
-      <div className="overflow-y-auto">
+      <div className="flex flex-grow overflow-auto">
         <Table>
           <TableBody>
             {pdfs.map((pdf, index) => (
@@ -52,8 +50,16 @@ const FiledRecentUploads = ({ pdfs }: { pdfs: Pdf[] }) => {
   )
 }
 
-const FiledRecentUploadsRow = async ({ pdf }: { pdf: Pdf }) => {
-  const chat = await prisma.chat.findUnique({ where: { pdfId: pdf.id } })
+const FiledRecentUploadsRow = ({ pdf }: { pdf: Pdf }) => {
+  const { data: chats } = useChats()
+  const [chat, setChat] = useState<Chat | undefined>(undefined)
+
+  useEffect(() => {
+    if (chats) {
+      const c = chats.find((chat) => chat.pdfId === pdf.id)
+      setChat(c)
+    }
+  }, [chats, pdf])
 
   return (
     <>
@@ -68,8 +74,8 @@ const FiledRecentUploadsRow = async ({ pdf }: { pdf: Pdf }) => {
                   href={`/chats/${chat.id}`}
                   key={pdf.id}
                 >
-                  {pdf.name.length > 48
-                    ? `${pdf.name.slice(0, 48)}...`
+                  {pdf.name.length > 32
+                    ? `${pdf.name.slice(0, 32)}...`
                     : pdf.name}
                 </Link>
               </div>

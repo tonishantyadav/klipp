@@ -1,4 +1,5 @@
 import prisma from '@/prisma/client'
+import { auth } from '@clerk/nextjs/server'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
@@ -6,13 +7,24 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const { userId } = auth()
+
+  if (!userId)
+    return NextResponse.json({ error: 'Uauthorized user.' }, { status: 401 })
+
   const { id } = params
   const pdf = await prisma.pdf.findUnique({ where: { id } })
 
   if (!pdf)
-    return NextResponse.json({ error: 'PDF not found!' }, { status: 404 })
+    return NextResponse.json({ error: 'PDF not found.' }, { status: 404 })
+
+  const chat = await prisma.chat.findUnique({ where: { pdfId: pdf.id } })
+
+  if (!chat)
+    return NextResponse.json({ error: 'Chat not found.' }, { status: 404 })
 
   try {
+    await prisma.chat.delete({ where: { id: chat.id } })
     await prisma.pdf.delete({ where: { id } })
     return NextResponse.json(
       { success: 'Your PDF is been deleted.' },
@@ -46,7 +58,7 @@ export async function PATCH(
   const pdf = await prisma.pdf.findUnique({ where: { id } })
 
   if (!pdf)
-    return NextResponse.json({ error: 'PDF not found!' }, { status: 404 })
+    return NextResponse.json({ error: 'PDF not found.' }, { status: 404 })
 
   try {
     await prisma.pdf.update({ where: { id }, data: { name } })
