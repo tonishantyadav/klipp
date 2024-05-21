@@ -2,6 +2,9 @@ import prisma from '@/prisma/client'
 import { auth } from '@clerk/nextjs/server'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
+import { createContext } from '@/lib/langchain'
+// import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
 
 export async function GET(request: NextRequest) {
   const { userId: clerkUserId } = auth()
@@ -14,7 +17,7 @@ export async function GET(request: NextRequest) {
       const chats = await prisma.chat.findMany({
         where: { userId: user!.id },
       })
-      return NextResponse.json(chats)
+      return NextResponse.json(chats, { status: 200 })
     }
   } catch (error) {
     return NextResponse.json(
@@ -44,6 +47,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'PDF not found.' }, { status: 404 })
 
   try {
+    const context = await createContext(pdf)
     const chat = await prisma.chat.create({
       data: {
         pdfId: pdf.id,
@@ -57,6 +61,7 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     )
   } catch (error) {
+    await prisma.pdf.delete({ where: { id: pdfId } })
     return NextResponse.json(
       { error: 'An unexpected error occurred.' },
       { status: 500 }
