@@ -8,7 +8,6 @@ import { useChats } from '@/hooks/chat'
 import { usePdfs } from '@/hooks/pdf'
 import { Chat, Pdf } from '@prisma/client'
 import { FileTextIcon, RocketIcon } from '@radix-ui/react-icons'
-import { useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -37,14 +36,16 @@ const FiledRecentUploads = ({ pdfs }: { pdfs: Pdf[] }) => {
         <RocketIcon className="h-5 w-5" />
         <span className="text-2xl">Recent Uploads</span>
       </div>
-      <div className="flex flex-grow overflow-auto">
-        <Table>
-          <TableBody>
-            {pdfs.map((pdf, index) => (
-              <FiledRecentUploadsRow pdf={pdf} key={index} />
-            ))}
-          </TableBody>
-        </Table>
+      <div className="scrollbar flex flex-grow overflow-auto">
+        <div className="h-full w-full">
+          <Table>
+            <TableBody>
+              {pdfs.map((pdf, index) => (
+                <FiledRecentUploadsRow pdf={pdf} key={index} />
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </>
   )

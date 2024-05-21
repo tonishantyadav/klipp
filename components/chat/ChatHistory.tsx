@@ -46,7 +46,7 @@ const ChatRow = async ({ pdf, pdfId }: { pdf: Pdf; pdfId: string }) => {
         className={cn(
           'my-1 flex w-full cursor-pointer items-center gap-1.5 text-nowrap rounded-sm border p-1.5 md:text-xs lg:text-sm',
           pdf.id === pdfId
-            ? 'bg-emerald-600 text-white hover:bg-emerald-500'
+            ? 'bg-blue-600 text-white hover:bg-blue-500'
             : 'text-slate-700/90 hover:bg-slate-100/80 hover:text-slate-900'
         )}
         key={pdf.id}
