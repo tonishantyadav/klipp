@@ -21,6 +21,7 @@ export const usePdfUpload = () => {
     },
     onUploadError: () => {
       setFile(null)
+      setUploadProgress(0)
       toast.error('An expected error occurred.')
     },
   })
